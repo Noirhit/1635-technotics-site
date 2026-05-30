@@ -1,0 +1,29 @@
+[
+    {
+        "id": "kickoff-2026",
+        "title": "Kickoff 2026 — Game Reveal Recap",
+        "date": "2026-01-08",
+        "author": "Team Captain",
+        "image": "images/blog/kickoff-2026.jpg",
+        "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Watch our team's first reactions to the new game and our initial strategy brainstorm.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
+    },
+    {
+        "id": "build-week-3",
+        "title": "Build Week 3 — Prototyping the Intake",
+        "date": "2026-01-29",
+        "author": "Mech Lead",
+        "image": "images/blog/build-week-3.jpg",
+        "excerpt": "Lorem ipsum dolor sit amet. Three prototype iterations later, we landed on a design we're confident in.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>"
+    },
+    {
+        "id": "district-event-1",
+        "title": "District Event 1 — Quarterfinals!",
+        "date": "2026-03-15",
+        "author": "Drive Coach",
+        "image": "images/blog/district-event-1.jpg",
+        "excerpt": "Lorem ipsum dolor sit amet. We finished the qualification rounds ranked 6th and were picked by the #2 alliance.",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+    }
+]

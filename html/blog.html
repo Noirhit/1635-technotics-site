@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Team 1635 Technotics blog — build season recaps, competition stories, and updates.">
+    <title>Blog | 1635 Technotics</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-wrapper">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Team 1635 Logo">
+                <span><span class="logo-num">1635</span> Technotics</span>
+            </a>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="robot.html">Our Robot</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="sponsors.html">Sponsors</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <span class="section-label" style="justify-content: center;">Updates · Stories · Recaps</span>
+                <h1>The <span class="highlight">Blog</span></h1>
+                <p>Lorem ipsum dolor sit amet. Build-season journals, competition recaps, and team news — straight from the shop.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <!-- Posts get rendered here from data/posts.json by script.js -->
+                <div class="card-grid" id="posts-container">
+                    <p style="color:#888;">Loading posts…</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3><span class="highlight">1635</span> Technotics</h3>
+                <p>Lorem ipsum dolor sit amet. A student-led FRC team building robots, growing engineers, and giving back to our community.</p>
+            </div>
+            <div>
+                <h4>Site</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="robot.html">Our Robot</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="sponsors.html">Sponsors</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">X / Twitter</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Reach Us</h4>
+                <ul>
+                    <li><a href="mailto:team@1635.example">team@1635.example</a></li>
+                    <li><a href="contact.html">Contact form</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 FRC Team 1635 Technotics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
