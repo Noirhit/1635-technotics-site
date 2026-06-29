@@ -6,12 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', () => linksList.classList.toggle('open'));
     }
 
-    // === Contact form (placeholder — replace with Formspree/Web3Forms) ===
+    // === Contact form placeholder (replace with Formspree/Web3Forms via action attr) ===
     const form = document.querySelector('.contact-form');
     if (form && !form.action) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Message sent! (placeholder — connect a form service to receive real submissions)');
+            const btn = form.querySelector('button[type="submit"]');
+            if (btn) btn.textContent = 'Sent — see you in the shop';
+            form.style.opacity = '.7';
             form.reset();
         });
     }
@@ -34,38 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let lastScroll = 0;
         window.addEventListener('scroll', () => {
             const current = window.scrollY;
-            if (current > lastScroll && current > 100) header.classList.add('hidden');
+            if (current > lastScroll && current > 120) header.classList.add('hidden');
             else header.classList.remove('hidden');
             lastScroll = current;
         });
     }
 
-    // === Sliding nav pill ===
-    const navList = document.querySelector('.nav-links');
-    if (navList) {
-        const navAnchors = navList.querySelectorAll('a');
-        const activeLink = navList.querySelector('a.active');
-
-        function movePillTo(link) {
-            if (!link) { navList.style.setProperty('--pill-opacity', '0'); return; }
-            const r = link.getBoundingClientRect();
-            const lr = navList.getBoundingClientRect();
-            navList.style.setProperty('--pill-width', `${r.width}px`);
-            navList.style.setProperty('--pill-x', `${r.left - lr.left}px`);
-            navList.style.setProperty('--pill-opacity', '1');
-        }
-        requestAnimationFrame(() => movePillTo(activeLink));
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(() => movePillTo(activeLink));
-        }
-        navAnchors.forEach((link) => {
-            link.addEventListener('mouseenter', () => movePillTo(link));
-        });
-        navList.addEventListener('mouseleave', () => movePillTo(activeLink));
-        window.addEventListener('resize', () => movePillTo(activeLink));
-    }
-
-    // === Year tabs (about page team roster) ===
+    // === Year tabs (about page) ===
     document.querySelectorAll('.year-tab').forEach((tab) => {
         tab.addEventListener('click', () => {
             const year = tab.dataset.year;
@@ -78,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // === Stat counter (counts up when scrolled into view) ===
-    document.querySelectorAll('.stat-number').forEach((el) => {
+    document.querySelectorAll('.stat-num[data-count], .stat-number[data-count]').forEach((el) => {
         const target = parseFloat(el.dataset.count);
         if (isNaN(target)) return;
         const suffix = el.dataset.suffix || '';
@@ -109,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('data/posts.json')
             .then((r) => r.json())
             .then((posts) => {
-                // newest first
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
                 postsContainer.innerHTML = posts.map((p, i) => `
                     <article class="card" data-post-index="${i}">
@@ -127,11 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .catch(() => {
-                postsContainer.innerHTML = '<p style="color:#888;text-align:center;">Posts could not be loaded. Make sure you are running a local server (VS Code Live Server).</p>';
+                postsContainer.innerHTML = '<p class="mono" style="color:var(--fg-3); padding: 40px 0;">// POSTS UNAVAILABLE — RUN A LOCAL SERVER (VS CODE LIVE SERVER)</p>';
             });
     }
 
-    // === Latest 3 blog post previews on home ===
+    // === Latest 3 blog posts preview on home ===
     const homePreview = document.querySelector('#blog-preview-container');
     if (homePreview) {
         fetch('data/posts.json')
@@ -146,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="post-meta">${formatDate(p.date)}</p>
                             <h3>${p.title}</h3>
                             <p>${p.excerpt}</p>
+                            <span class="read-more">Read more</span>
                         </div>
                     </a>
                 `).join('');

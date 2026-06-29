@@ -3,208 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Meet 1635 Technotics' competition robot — specs, mechanisms, and history.">
-    <title>Our Robot | 1635 Technotics</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png?v=2">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png?v=2">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png?v=2">
-    <link rel="apple-touch-icon" href="images/favicon.png?v=2">
+    <meta name="description" content="The 2026 robot from Newtown Technotics — CAD, specs, mechanisms, and twenty-one years of robot history.">
+    <title>The Robot — 1635 Technotics</title>
+    <link rel="icon" type="image/png" href="images/favicon.png?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="nav-wrapper">
-            <a href="index.html" class="logo">
-                <img src="images/logo.png" alt="Team 1635 Logo">
-                <span><span class="logo-num">1635</span> Technotics</span>
-            </a>
-            <nav class="main-nav">
-                <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="robot.html" class="active">Our Robot</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="sponsors.html">Sponsors</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+
+<header class="site-header">
+    <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="Team 1635 Logo">
+        <span>
+            <span class="logo-num">1635</span>
+            <span class="logo-sub">Newtown Technotics · FRC</span>
+        </span>
+    </a>
+    <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="robot.html" class="active">The Robot</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+            <li><a href="contact.html" class="nav-cta">Join →</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="container">
+        <div class="page-meta">
+            <div class="crosshair"><span></span><span></span><span></span></div>
+            <span class="mono">// CHAPTER 02 · SEASON 2026 — REBUILT</span>
         </div>
-    </header>
+        <h1>Meet <span class="highlight">"AJ".</span></h1>
+        <p>The machine designed, built and driven by 1635 Technotics this season — a custom drivetrain, a compliant-roller intake, and a launcher tower.</p>
+    </div>
+</section>
 
-    <main>
-        <section class="page-header">
-            <div class="container">
-                <span class="section-label" style="justify-content: center;">2026 Season</span>
-                <h1>Meet <span class="highlight">"AJ"</span></h1>
-                <p>Lorem ipsum dolor sit amet. The machine designed, built, and driven by 1635 Technotics this season.</p>
-            </div>
-        </section>
+<!-- HERO IMAGE -->
+<section class="section">
+    <figure class="frame" style="max-width:var(--max); margin: 0 auto clamp(40px,5vw,64px); aspect-ratio: 16/8;">
+        <img src="images/robot-current.JPG" alt="The 2026 robot 'AJ'">
+        <figcaption class="frame-cap"><span class="dot"></span>FIG.01 — 2026 COMP BOT "AJ" · ON THE FLOOR</figcaption>
+    </figure>
 
-        <!-- HERO IMAGE + INTRO -->
-        <section class="section">
-            <div class="container">
-                <img src="images/robot-hero.JPG" alt="Our robot in action" class="feature-image" style="aspect-ratio: 16/9; margin-bottom: 3rem;">
-                <div class="preview-grid">
-                    <div>
-                        <span class="section-label">Overview</span>
-                        <h2 class="heading">Engineered to <span class="highlight">Win</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                    <div>
-                        <img src="images/robot-side.JPG" alt="Robot side view" class="feature-image">
-                    </div>
+    <div class="two-col">
+        <div>
+            <span class="mono section-tag">§ 01 — OVERVIEW</span>
+            <h2 style="font-size:clamp(28px,3.4vw,42px); letter-spacing:-.02em; margin-bottom:18px;">Engineered to <span class="highlight">win.</span></h2>
+            <p style="color:var(--fg-2); font-size:16px; margin-bottom:18px;">
+                <strong style="color:var(--fg);">AJ</strong> is this year's competition robot — designed in CAD, machined and
+                3D-printed in the Newtown HS shop, and wrapped in red bumpers reading 16 and 35.
+            </p>
+            <p style="color:var(--fg-2); font-size:16px; margin-bottom:18px;">
+                A six-wheel custom base carries the weight; a roller stack intake feeds a flywheel
+                launcher tower up top. Every subsystem started as a wood-and-extrusion prototype
+                before becoming the parts you see on the field.
+            </p>
+        </div>
+        <figure class="frame" style="aspect-ratio:4/3;">
+            <img src="images/robot-side.JPG" alt="Robot side view">
+            <figcaption class="frame-cap"><span class="dot"></span>SIDE PROFILE · PIT B10</figcaption>
+        </figure>
+    </div>
+</section>
+
+<!-- SPECS -->
+<section class="section section--bg2">
+    <div class="section-head">
+        <span class="mono section-tag">§ 02 — BY THE NUMBERS</span>
+        <h2>Robot specs.</h2>
+    </div>
+    <div class="robot-specs">
+        <div class="rspec"><span class="mono">DRIVE</span><b>Tank base</b><small>Custom 6-wheel, belt-in-tube</small></div>
+        <div class="rspec"><span class="mono">MOTORS</span><b>NEO brushless</b><small>Multi-motor configuration</small></div>
+        <div class="rspec"><span class="mono">FRAME</span><b>Sheet aluminum</b><small>In-house CNC &amp; mill</small></div>
+        <div class="rspec"><span class="mono">INTAKE</span><b>Roller stack</b><small>3D-printed compliant wheels</small></div>
+        <div class="rspec"><span class="mono">LAUNCHER</span><b>Flywheel tower</b><small>Belts &amp; flywheels</small></div>
+        <div class="rspec"><span class="mono">BATTERY</span><b>12V FRC</b><small>Standard FRC pack</small></div>
+        <div class="rspec"><span class="mono">PROGRAMMING</span><b>Java · WPILib</b><small>Auto routines &amp; vision</small></div>
+        <div class="rspec"><span class="mono">BUMPERS</span><b>16 / 35</b><small>Red, regulation FRC</small></div>
+    </div>
+</section>
+
+<!-- DRIVETRAIN CAD -->
+<section class="section">
+    <div class="cad-head">
+        <h3>Drivetrain — <span class="highlight">CAD</span></h3>
+        <span class="mono">AUTODESK · FUSION / INVENTOR</span>
+    </div>
+    <div class="cad-grid">
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/drivetrain-1.png" alt="" class="slide active">
+                    <img src="images/drivetrain-2.png" alt="" class="slide">
+                    <img src="images/drivetrain-3.png" alt="" class="slide">
                 </div>
             </div>
-        </section>
-
-        <!-- SPECS -->
-        <section class="section section--gray">
-            <div class="container">
-                <span class="section-label">By the Numbers</span>
-                <h2 class="heading">Robot <span class="highlight">Specs</span></h2>
-                <div class="specs-grid">
-                    <div class="spec"><div class="spec-label">Weight</div><div class="spec-value">--- lbs</div></div>
-                    <div class="spec"><div class="spec-label">Drivetrain</div><div class="spec-value">Tank</div></div>
-                    <div class="spec"><div class="spec-label">Top Speed</div><div class="spec-value">--- ft/s</div></div>
-                    <div class="spec"><div class="spec-label">Motors</div><div class="spec-value">Brushless Neo Motors</div></div>
-                    <div class="spec"><div class="spec-label">Battery</div><div class="spec-value">12V FRC</div></div>
-                    <div class="spec"><div class="spec-label">Programming</div><div class="spec-value">Java</div></div>
+            <figcaption class="cad-body">
+                <span class="mono">DT.01 — FRONT</span>
+                <h4>Six-wheel base</h4>
+                <p>Belt-in-tube wheel modules with center-mounted gearboxes and a low battery tray.</p>
+            </figcaption>
+        </figure>
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/drivetrain-2.png" alt="" class="slide active">
+                    <img src="images/drivetrain-1.png" alt="" class="slide">
+                    <img src="images/drivetrain-3.png" alt="" class="slide">
                 </div>
             </div>
-        </section>
-
-        <!-- MECHANISMS -->
-        <section class="section">
-            <div class="container">
-                <span class="section-label">Inside the Machine</span>
-                <h2 class="heading" style="margin-bottom:4rem;">Key <span class="highlight">Mechanisms</span></h2>
-
-                <div class="mechanism">
-                    <div class="mech-text">
-                        <div class="mech-number">01</div>
-                        <h3>Drivetrain</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <div class="mech-image">
-                        <div class="slideshow">
-                            <img src="images/drivetrain-1.png" alt="" class="slide active">
-                            <img src="images/drivetrain-2.png" alt="" class="slide">
-                            <img src="images/drivetrain-3.png" alt="" class="slide">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mechanism">
-                    <div class="mech-text">
-                        <div class="mech-number">02</div>
-                        <h3>Intake</h3>
-                        <p>Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                    </div>
-                    <div class="mech-image">
-                        <div class="slideshow">
-                            <img src="images/intake-1.png" alt="" class="slide active">
-                            <img src="images/intake-2.png" alt="" class="slide">
-                            <img src="images/intake-3.png" alt="" class="slide">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mechanism">
-                    <div class="mech-text">
-                        <div class="mech-number">03</div>
-                        <h3>Launcher</h3>
-                        <p>Lorem ipsum dolor sit amet. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                    </div>
-                    <div class="mech-image">
-                        <div class="slideshow">
-                            <img src="images/launcher-1.png" alt="" class="slide active">
-                            <img src="images/launcher-2.png" alt="" class="slide">
-                            <img src="images/launcher-3.png" alt="" class="slide">
-                        </div>
-                    </div>
+            <figcaption class="cad-body">
+                <span class="mono">DT.02 — TOP</span>
+                <h4>Gearbox layout</h4>
+                <p>Paired motors per side driving the center wheel, power routed out to the corners.</p>
+            </figcaption>
+        </figure>
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/drivetrain-3.png" alt="" class="slide active">
+                    <img src="images/drivetrain-1.png" alt="" class="slide">
+                    <img src="images/drivetrain-2.png" alt="" class="slide">
                 </div>
             </div>
-        </section>
+            <figcaption class="cad-body">
+                <span class="mono">DT.03 — ISO</span>
+                <h4>Full assembly</h4>
+                <p>The complete rolling chassis the rest of the robot is built on top of.</p>
+            </figcaption>
+        </figure>
+    </div>
+</section>
 
-        <!-- ROBOT HISTORY -->
-        <section class="section section--gray">
-            <div class="container">
-                <span class="section-label">Past Robots</span>
-                <h2 class="heading" style="margin-bottom:3rem;">Robot <span class="highlight">Legacy</span></h2>
-                <div class="card-grid">
-                    <article class="card">
-                        <img src="images/robot-past-1.jpg" alt="">
-                        <div class="card-body">
-                            <p class="post-meta">Year</p>
-                            <h3>Robot Name</h3>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </article>
-                    <article class="card">
-                        <img src="images/robot-past-2.jpg" alt="">
-                        <div class="card-body">
-                            <p class="post-meta">Year</p>
-                            <h3>Robot Name</h3>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </article>
-                    <article class="card">
-                        <img src="images/robot-past-3.jpg" alt="">
-                        <div class="card-body">
-                            <p class="post-meta">Year</p>
-                            <h3>Robot Name</h3>
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </article>
+<!-- INTAKE CAD -->
+<section class="section section--bg2">
+    <div class="cad-head">
+        <h3>Intake — <span class="highlight">CAD</span></h3>
+        <span class="mono">COMPLIANT ROLLER MECHANISM</span>
+    </div>
+    <div class="cad-grid">
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/intake-1.png" alt="" class="slide active">
+                    <img src="images/intake-2.png" alt="" class="slide">
+                    <img src="images/intake-3.png" alt="" class="slide">
                 </div>
             </div>
-        </section>
-    </main>
+            <figcaption class="cad-body">
+                <span class="mono">IN.01 — FRONT</span>
+                <h4>Roller stack</h4>
+                <p>Staggered compliant wheels on yellow shafts pull game pieces up into the robot.</p>
+            </figcaption>
+        </figure>
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/intake-2.png" alt="" class="slide active">
+                    <img src="images/intake-1.png" alt="" class="slide">
+                    <img src="images/intake-3.png" alt="" class="slide">
+                </div>
+            </div>
+            <figcaption class="cad-body">
+                <span class="mono">IN.02 — ISO</span>
+                <h4>Side plates &amp; belts</h4>
+                <p>Laser-cut side plates carry the bearings; a belt run drives all three roller axles.</p>
+            </figcaption>
+        </figure>
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/intake-3.png" alt="" class="slide active">
+                    <img src="images/intake-1.png" alt="" class="slide">
+                    <img src="images/intake-2.png" alt="" class="slide">
+                </div>
+            </div>
+            <figcaption class="cad-body">
+                <span class="mono">IN.03 — REAR</span>
+                <h4>Drive side</h4>
+                <p>Single gearmotor input, geared down and split across the roller train.</p>
+            </figcaption>
+        </figure>
+    </div>
+</section>
 
-    <footer class="site-footer">
-        <div class="container footer-grid">
+<!-- LAUNCHER CAD -->
+<section class="section">
+    <div class="cad-head">
+        <h3>Launcher — <span class="highlight">CAD</span></h3>
+        <span class="mono">FLYWHEEL TOWER ASSEMBLY</span>
+    </div>
+    <div class="cad-grid">
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/launcher-1.png" alt="" class="slide active">
+                    <img src="images/launcher-2.png" alt="" class="slide">
+                    <img src="images/launcher-3.png" alt="" class="slide">
+                </div>
+            </div>
+            <figcaption class="cad-body">
+                <span class="mono">LN.01 — FRONT</span>
+                <h4>Flywheel pair</h4>
+                <p>Two-stage flywheel pulls game pieces up and out under driver control.</p>
+            </figcaption>
+        </figure>
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/launcher-2.png" alt="" class="slide active">
+                    <img src="images/launcher-1.png" alt="" class="slide">
+                    <img src="images/launcher-3.png" alt="" class="slide">
+                </div>
+            </div>
+            <figcaption class="cad-body">
+                <span class="mono">LN.02 — SIDE</span>
+                <h4>Belt run</h4>
+                <p>Belts drive both flywheels off paired NEO brushless motors with high gear ratio.</p>
+            </figcaption>
+        </figure>
+        <figure class="cad">
+            <div class="cad-img">
+                <div class="slideshow">
+                    <img src="images/launcher-3.png" alt="" class="slide active">
+                    <img src="images/launcher-1.png" alt="" class="slide">
+                    <img src="images/launcher-2.png" alt="" class="slide">
+                </div>
+            </div>
+            <figcaption class="cad-body">
+                <span class="mono">LN.03 — TOP</span>
+                <h4>Mounting</h4>
+                <p>Bolted to the top of the chassis with a brace tying back to the drivetrain rails.</p>
+            </figcaption>
+        </figure>
+    </div>
+</section>
+
+<!-- ROBOT HISTORY -->
+<section class="section section--bg2">
+    <div class="section-head">
+        <span class="mono section-tag">§ 03 — ROBOT HISTORY</span>
+        <h2>Twenty-one seasons of machines.</h2>
+        <p class="section-sub">
+            Every year is its own robot — named, photographed, retired to the back wall of the shop.
+            A few of them, newest first.
+        </p>
+    </div>
+
+    <div class="bot-row solo">
+        <article class="bot-card">
+            <figure class="frame"><img src="images/robot-current.JPG" alt="2026 robot"></figure>
+            <div class="bot-body">
+                <div class="bot-year">2026</div>
+                <h3>AJ <span class="bot-status">Current</span></h3>
+                <p class="bot-game">GAME — REBUILT</p>
+                <p>This season's machine: a custom drivetrain, a compliant-roller intake tower, and a flywheel launcher built on Newtown's shop floor.</p>
+                <ul class="bot-spec">
+                    <li><span>DRIVE</span>Custom 6-wheel base</li>
+                    <li><span>INTAKE</span>3D-printed roller stack</li>
+                    <li><span>EVENT</span>NYC Regional · Armory</li>
+                </ul>
+            </div>
+        </article>
+        <article class="bot-card">
+            <figure class="frame"><img src="images/robot-side.JPG" alt="2026 robot in the pit"></figure>
+            <div class="bot-body">
+                <div class="bot-year">2026</div>
+                <h3>In the pit</h3>
+                <p class="bot-game">PIT B10 — INSPECTED</p>
+                <p>Bag-and-tag is gone, but the routine isn't: load in, pass inspection, and keep a laptop and a soldering iron close all weekend.</p>
+                <ul class="bot-spec">
+                    <li><span>STATUS</span>Inspected &amp; cleared</li>
+                    <li><span>CREW</span>Mech · Elec · Prog</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <details class="archive-more">
+        <summary>The full run · 2005&ndash;today <span class="mono">21 seasons</span></summary>
+        <ul class="archive-list">
+            <li><span>2026</span> REBUILT — current</li>
+            <li><span>2025</span> Reefscape</li>
+            <li><span>2024</span> Crescendo</li>
+            <li><span>2023</span> Charged Up</li>
+            <li><span>2022</span> Rapid React</li>
+            <li><span>2020</span> Infinite Recharge</li>
+            <li><span>2019</span> Destination: Deep Space</li>
+            <li><span>2018</span> FIRST Power Up</li>
+            <li><span>2017</span> FIRST Steamworks</li>
+            <li><span>2016</span> FIRST Stronghold</li>
+            <li><span>2015</span> Recycle Rush</li>
+            <li><span>2014</span> Aerial Assist</li>
+            <li><span>2013</span> Ultimate Ascent</li>
+            <li><span>2012</span> Rebound Rumble</li>
+            <li><span>2011</span> Logo Motion</li>
+            <li><span>2010</span> Breakaway</li>
+            <li><span>2009</span> Lunacy</li>
+            <li><span>2008</span> FIRST Overdrive</li>
+            <li><span>2005</span> Triple Play — rookie</li>
+        </ul>
+    </details>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div>
             <div class="footer-brand">
-                <h3><span class="highlight">1635</span> Technotics</h3>
-                <p>Lorem ipsum dolor sit amet. A student-led FRC team building robots, growing engineers, and giving back to our community.</p>
+                <img src="images/logo.png" alt="Team 1635 Logo">
+                <div class="footer-num">1635</div>
             </div>
+            <div class="footer-name">NEWTOWN TECHNOTICS</div>
+            <div class="footer-sub mono">FRC TEAM · EST. 2005 · ELMHURST, QUEENS, NY</div>
+        </div>
+        <div class="footer-cols">
             <div>
-                <h4>Site</h4>
+                <h4>EXPLORE</h4>
                 <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="robot.html">Our Robot</a></li>
+                    <li><a href="about.html">About the team</a></li>
+                    <li><a href="robot.html">The 2026 robot</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="sponsors.html">Sponsors</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Connect</h4>
+                <h4>PROGRAM</h4>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">X / Twitter</a></li>
-                    <li><a href="#">GitHub</a></li>
+                    <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC? ↗</a></li>
+                    <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">The Blue Alliance ↗</a></li>
+                    <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · Team 1635 ↗</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Reach Us</h4>
+                <h4>CONNECT</h4>
                 <ul>
-                    <li><a href="mailto:team@1635.example">team@1635.example</a></li>
-                    <li><a href="contact.html">Contact form</a></li>
+                    <li><a href="contact.html">Join the team</a></li>
+                    <li><a href="contact.html">Become a sponsor</a></li>
+                    <li><a href="#">Instagram ↗</a></li>
+                    <li><a href="#">YouTube ↗</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 FRC Team 1635 Technotics. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+        <span class="mono">© 2005&ndash;2026 NEWTOWN TECHNOTICS · FRC TEAM 1635</span>
+        <span class="mono">NEWTOWN HIGH SCHOOL · ELMHURST, QUEENS, NY</span>
+        <span class="mono dot-blink">SEASON 2026 — REBUILT</span>
+    </div>
+</footer>
 
-    <script src="js/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
