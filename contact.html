@@ -56,8 +56,8 @@
             <h2>You don't need to know anything. You need to show up.</h2>
             <p>
                 Newtown HS students from any grade can join. We'll teach you to mill,
-                to solder, to write code, and to lose a match gracefully and fix the robot
-                for the next one. Find the team in the shop on the third floor.
+                to wirings, to write code, and to debug and fix the robot
+                for the next one. Find the team in room B2 in the basement.
             </p>
             <ul class="join-checklist">
                 <li><span class="check">●</span> Open to all Newtown HS students, grades 9&ndash;12</li>
@@ -68,7 +68,17 @@
                 <li><span class="check">●</span> Sponsor inquiries: ask for the sponsor packet</li>
             </ul>
         </div>
-        <form class="contact-form">
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- === WEB3FORMS SETUP === -->
+            <!-- 1. Go to https://web3forms.com  →  enter your email  →  get an access key -->
+            <!-- 2. Replace YOUR_ACCESS_KEY_HERE below with the key they email you -->
+            <input type="hidden" name="access_key" value="4b0c8f8a-cc1c-4d35-b251-e0710429cfc4">
+            <input type="hidden" name="subject" value="New message — 1635 Technotics contact form">
+            <input type="hidden" name="from_name" value="1635 Technotics Website">
+            <!-- Honeypot: hidden field bots often fill in; real users leave it empty -->
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="hidden" name="cc" value="captain@example.com, mentor@example.com">
+
             <div class="form-header">// MESSAGE FORM — TEAM 1635</div>
             <label>
                 <span>FIELD_01 — your name</span>
@@ -96,6 +106,7 @@
             <button type="submit" class="btn btn-block">Send message
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
             </button>
+            <div class="form-message" id="form-message"></div>
             <div class="form-footer">NEWTOWN TECHNOTICS · FRC 1635 · ELMHURST, QUEENS</div>
         </form>
     </div>
@@ -126,9 +137,9 @@
             <div class="contact-info-block">
                 <h3>FOLLOW</h3>
                 <p>
-                    <a href="#">Instagram ↗</a>
-                    <a href="#">YouTube ↗</a>
-                    <a href="#">X / Twitter ↗</a>
+                    <a href="https://www.instagram.com/newtowntechnotics/" target="_blank" rel="noopener">Instagram ↗</a>
+                    <a href="https://www.youtube.com/@NewtownTechnotics" target="_blank" rel="noopener">YouTube ↗</a>
+                    <a href="https://twitter.com/NewtownTechnotics" target="_blank" rel="noopener">X / Twitter ↗</a>
                     <a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">The Blue Alliance ↗</a>
                 </p>
             </div>
@@ -184,8 +195,8 @@
                 <ul>
                     <li><a href="contact.html">Join the team</a></li>
                     <li><a href="contact.html">Become a sponsor</a></li>
-                    <li><a href="#">Instagram ↗</a></li>
-                    <li><a href="#">YouTube ↗</a></li>
+                    <li><a href="https://www.instagram.com/newtowntechnotics/" target="_blank" rel="noopener">Instagram ↗</a></li>
+                    <li><a href="https://www.youtube.com/@NewtownTechnotics" target="_blank" rel="noopener">YouTube ↗</a></li>
                 </ul>
             </div>
         </div>

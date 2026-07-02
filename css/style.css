@@ -892,6 +892,26 @@ figure { margin: 0; }
     margin-top: 8px;
     font-weight: 500;
 }
+.form-message {
+    display: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border: 1px solid var(--line-2);
+    background: var(--bg);
+    font-weight: 500;
+    margin-top: 4px;
+}
+.form-message--ok {
+    color: #2cd56b;
+    border-color: #2cd56b;
+}
+.form-message--err {
+    color: var(--accent);
+    border-color: var(--accent);
+}
 .contact-form label, .join-form label {
     display: grid;
     gap: 6px;

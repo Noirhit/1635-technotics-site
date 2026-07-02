@@ -6,16 +6,55 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', () => linksList.classList.toggle('open'));
     }
 
-    // === Contact form placeholder (replace with Formspree/Web3Forms via action attr) ===
-    const form = document.querySelector('.contact-form');
-    if (form && !form.action) {
-        form.addEventListener('submit', (e) => {
+    // === Contact form — submits to Web3Forms via fetch, stays on page ===
+    const form = document.querySelector('#contact-form');
+    if (form) {
+        const messageEl = form.querySelector('#form-message');
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button ? button.textContent.trim() : 'Send message';
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = form.querySelector('button[type="submit"]');
-            if (btn) btn.textContent = 'Sent — see you in the shop';
-            form.style.opacity = '.7';
-            form.reset();
+
+            // If access key hasn't been replaced, don't try to hit the API
+            const keyField = form.querySelector('input[name="access_key"]');
+            if (!keyField || !keyField.value || keyField.value === 'YOUR_ACCESS_KEY_HERE') {
+                showMessage(messageEl, '// FORM NOT CONFIGURED — SEE contact.html COMMENT FOR SETUP', 'error');
+                return;
+            }
+
+            if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+            showMessage(messageEl, '', 'clear');
+
+            const data = Object.fromEntries(new FormData(form).entries());
+
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                const result = await res.json();
+                if (result.success) {
+                    showMessage(messageEl, '// MESSAGE SENT — WE\'LL BE IN TOUCH SOON', 'success');
+                    form.reset();
+                } else {
+                    throw new Error(result.message || 'Send failed');
+                }
+            } catch (err) {
+                showMessage(messageEl, '// SEND FAILED — EMAIL team@1635.example DIRECTLY', 'error');
+            } finally {
+                if (button) { button.disabled = false; button.textContent = originalText; }
+            }
         });
+    }
+    function showMessage(el, text, type) {
+        if (!el) return;
+        el.textContent = text;
+        el.className = 'form-message';
+        if (type === 'success') el.classList.add('form-message--ok');
+        if (type === 'error') el.classList.add('form-message--err');
+        el.style.display = text ? 'block' : 'none';
     }
 
     // === Slideshow ===
