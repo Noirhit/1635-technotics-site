@@ -32,11 +32,11 @@
        500  the brand mark: borders, bumpers, fills, the band          (AA large)
        300  red TEXT on dark surfaces, and fills carrying dark text    (5.5:1)
        700  fills carrying chalk text — buttons, CTAs                  (5.4:1)   */
-  --red:       #E4002B;   /* 500 */
-  --red-ink:   #FF3355;   /* 300 */
-  --red-fill:  #C4001F;   /* 700 */
-  --red-hot:   #FF3355;
-  --red-film:  rgba(228, 0, 43, 0.12);
+  --red:       #C8102E;   /* 500 · deeper, less neon than the old #E4002B */
+  --red-ink:   #F2647A;   /* 300 · red TEXT on dark — desaturated so it stops glaring */
+  --red-fill:  #A50D26;   /* 700 · fills that carry chalk text */
+  --red-hot:   #F2647A;
+  --red-film:  rgba(200, 16, 46, 0.14);
 
   /* --- caution accent: used 3 places on the entire site --- */
   --amber:     #FFB300;
@@ -47,8 +47,8 @@
   --mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 
   /* --- fluid type scale --- */
-  --t-mega:  clamp(4rem, 15vw, 13rem);
-  --t-xxl:   clamp(2.75rem, 7vw, 6rem);
+  --t-mega:  clamp(2.75rem, 9vw, 7.5rem);
+  --t-xxl:   clamp(2.4rem, 5.6vw, 4.75rem);
   --t-xl:    clamp(2rem, 4.4vw, 3.5rem);
   --t-lg:    clamp(1.5rem, 2.6vw, 2.125rem);
   --t-md:    clamp(1.125rem, 1.5vw, 1.375rem);
@@ -402,14 +402,20 @@ strong { color: var(--chalk); font-weight: 600; }
 }
 
 /* WebGL assembly sits behind everything */
+/* a <canvas> carries intrinsic 300x150 attributes, so `inset: 0` alone will
+   NOT stretch it — the width/height declarations are load-bearing. */
 #rig {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   opacity: 0;
   transition: opacity 1.4s var(--ease-out);
 }
 #rig.is-live { opacity: 1; }
+#rig.is-dead { display: none; }
+#exploded.is-dead { display: none; }
 
 /* engineering paper grid */
 .hero__grid {
@@ -432,7 +438,12 @@ strong { color: var(--chalk); font-weight: 600; }
   max-width: var(--max);
   margin-inline: auto;
   display: grid;
-  gap: var(--s-6);
+  gap: var(--s-5);
+}
+/* hold the copy to the left half so the robot never sits under the type */
+@media (min-width: 901px) {
+  .hero__inner > *:not(.stats) { max-width: 56%; }
+  .hero__title { max-width: 62%; }
 }
 
 .hero__meta {
@@ -462,8 +473,8 @@ strong { color: var(--chalk); font-weight: 600; }
 .hero__title {
   font-size: var(--t-mega);
   font-weight: 700;
-  line-height: 0.84;
-  letter-spacing: -0.055em;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
   margin-block: var(--s-2);
 }
 .hero__title em { font-style: normal; color: var(--red-ink); }
@@ -510,13 +521,16 @@ strong { color: var(--chalk); font-weight: 600; }
 /* --------------------------------------------------------------------------
    TICKER
    -------------------------------------------------------------------------- */
+/* was a full-width saturated bar — now a dark strip with red type.
+   Same rhythm, none of the glare. */
 .ticker {
-  background: var(--red-ink);
-  color: var(--void);
+  background: var(--graphite);
+  color: var(--red-ink);
   overflow: hidden;
-  padding-block: 0.5rem;
+  padding-block: 0.6rem;
   position: relative;
   z-index: 2;
+  border-block: 1px solid var(--edge);
 }
 .ticker__track {
   display: flex;
@@ -1093,12 +1107,22 @@ strong { color: var(--chalk); font-weight: 600; }
 /* --------------------------------------------------------------------------
    MANIFESTO BAND
    -------------------------------------------------------------------------- */
+/* the manifesto keeps its weight through scale and a red rule,
+   not through a page-wide saturated field */
 .band {
-  background: var(--red);
-  color: var(--void);
+  background: var(--graphite);
+  color: var(--chalk);
   padding: var(--s-7) var(--gutter);
   position: relative;
   z-index: 2;
+  border-block: 1px solid var(--edge);
+}
+.band::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--red);
 }
 .band__inner {
   max-width: var(--max);
@@ -1110,7 +1134,7 @@ strong { color: var(--chalk); font-weight: 600; }
   letter-spacing: -0.025em;
   max-width: 22ch;
 }
-.band .note { color: rgba(8, 9, 10, 0.6); display: block; margin-bottom: var(--s-4); }
+.band .note { color: var(--red-ink); display: block; margin-bottom: var(--s-4); }
 
 /* --------------------------------------------------------------------------
    FOOTER

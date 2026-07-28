@@ -1,0 +1,4 @@
+# Raw CAD export — 941 MB of per-part glTF.
+# The web build is models/kitbot.glb, generated from this by tools/build_kitbot.py.
+assets/kitbot/
+*.CR2
