@@ -1,294 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Newtown Technotics — FRC Team 1635. Our mission, subteams, build season, and members.">
-    <title>About — 1635 Technotics</title>
-    <link rel="icon" type="image/png" href="images/favicon.png?v=3">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The students, mentors and subteams behind FRC Team 1635 Newtown Technotics — and how a six-week build season actually runs.">
+<title>The Team — 1635 Newtown Technotics</title>
+<link rel="icon" type="image/png" href="images/favicon.png?v=4">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="site-header">
-    <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="Team 1635 Logo">
-        <span>
-            <span class="logo-num">1635</span>
-            <span class="logo-sub">Newtown Technotics · FRC</span>
-        </span>
-    </a>
-    <nav class="main-nav">
-        <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="robot.html">The Robot</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="sponsors.html">Sponsors</a></li>
-            <li><a href="contact.html" class="nav-cta">Contact us</a></li>
-        </ul>
-    </nav>
+<header class="nav">
+  <a class="mark" href="index.html">
+    <img src="images/logo.png" alt="">
+    <span><span class="mark__num">1635</span><span class="mark__sub">Newtown Technotics</span></span>
+  </a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav__links">
+    <a href="index.html">Index</a>
+    <a href="about.html" aria-current="page">The Team</a>
+    <a href="robot.html">The Robot</a>
+    <a href="blog.html">Logbook</a>
+    <a href="sponsors.html">Backers</a>
+    <a href="contact.html" class="nav__cta">Contact us</a>
+  </nav>
+  <i class="nav__progress"></i>
 </header>
 
 <main>
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-    <div class="container">
-        <div class="page-meta">
-            <div class="crosshair"><span></span><span></span><span></span></div>
-            <span class="mono">// CHAPTER 01 · WHO WE ARE</span>
-        </div>
-        <h1>About <span class="highlight">us.</span></h1>
-        <p>The students, mentors and machines that make 1635 Technotics what it is. A robotics team that happens to be a public high school.</p>
+<!-- ══ PAGE HEAD ══ -->
+<section class="bay bay--flush" style="padding-top:clamp(4rem,9vw,7rem)">
+  <div class="shell">
+    <div class="hero__meta o" style="margin-bottom:var(--s-5)">
+      <span class="datum" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="note">Sheet 01 of 05</span>
+      <span class="note note--red">The crew</span>
     </div>
+    <h1 class="o" style="font-size:var(--t-xxl);max-width:16ch">Fifty students.<br>One shop. <em style="font-style:normal;color:var(--red)">One deadline.</em></h1>
+    <p class="o" style="max-width:56ch;margin-top:var(--s-5);font-size:var(--t-md);color:var(--chalk-2)">
+      There is no tryout and no prerequisite. Show up in Room B2, pick a subteam, and
+      by February you will have built something that moves.
+    </p>
+  </div>
 </section>
 
-<!-- MISSION -->
-<section class="section">
-    <div class="about-grid">
-        <div class="about-copy">
-            <span class="mono section-tag">§ 01 — MISSION</span>
-            <p class="lede">
-                Newtown High School sits in Elmhurst — a neighborhood where the students collectively
-                speak dozens of languages. Every winter a chunk of them spend their nights over a CAD
-                model, a soldering iron, and a half-built drivetrain.
-            </p>
-            <p>
-                We're the <strong>Newtown Technotics — FRC Team 1635</strong>. Each January, FIRST
-                releases the season's game; six weeks later a 120-pound robot rolls off our shop floor.
-                In between is the part the team is really about: learning mechanical engineering,
-                electrical, software and project management against a deadline that does not move.
-            </p>
-            <p>
-                Since our rookie year in 2005 we've competed every single season — most recently at
-                the NYC Regional inside the Armory, where you'll find us in the stands holding
-                three-foot-tall red <strong>16</strong> and <strong>35</strong> and never quite
-                sitting down.
-            </p>
-            <figure class="frame about-photo">
-                <div class="slideshow" style="aspect-ratio:16/10;">
-                    <img src="images/about-mission-1.JPG" alt="" class="slide active">
-                    <img src="images/about-mission-2.JPG" alt="" class="slide">
-                    <img src="images/about-mission-3.JPG" alt="" class="slide">
-                    <img src="images/about-mission-4.JPG" alt="" class="slide">
-                    <img src="images/about-mission-5.JPG" alt="" class="slide">
-                    <img src="images/about-mission-6.JPG" alt="" class="slide">
-                </div>
-                <figcaption class="frame-cap"><span class="dot"></span>THE TEAM · AT THE ARMORY</figcaption>
-            </figure>
-        </div>
-
-        <aside class="bracket-card">
-            <header>// TEAM CARD</header>
-            <dl class="kv">
-                <dt>Team number</dt><dd>1635</dd>
-                <dt>Name</dt><dd>Newtown Technotics</dd>
-                <dt>Program</dt><dd>FIRST Robotics Comp.</dd>
-                <dt>School</dt><dd>Newtown High School</dd>
-                <dt>City</dt><dd>Elmhurst, Queens, NY</dd>
-                <dt>Founded</dt><dd>2005 · Rookie</dd>
-                <dt>Home event</dt><dd>NYC Regional · Armory</dd>
-                <dt>Season</dt><dd>2026 — REBUILT</dd>
-                <dt>Roster</dt><dd>~50 students</dd>
-                <dt>Title sponsor</dt><dd>Arsenal · New York</dd>
-            </dl>
-            <footer>FRC.TEAM.1635 ▮ NEWTOWN HS</footer>
-        </aside>
-    </div>
+<!-- ══ THE PHOTO ══ -->
+<section class="bay bay--flush" style="padding-top:0">
+  <div class="shell">
+    <figure class="crew" data-reveal>
+      <img src="images/team-2026.jpg" alt="FRC Team 1635 Newtown Technotics, 2026 season">
+      <figcaption class="crew__plate">
+        <strong>The 2026 crew</strong>
+        <span class="note">NYC REGIONAL · THE ARMORY · ~50 STUDENTS &amp; MENTORS</span>
+      </figcaption>
+    </figure>
+  </div>
 </section>
 
-<!-- SUBTEAMS -->
-<section class="section section--bg2">
-    <div class="section-head">
-        <span class="mono section-tag">§ 02 — SUBTEAMS</span>
-        <h2>Five subteams. One robot.</h2>
+<!-- ══ MISSION ══ -->
+<section class="bay">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 01 — Why we do it</span>
+      <h2>The robot is the excuse. The engineers are the point.</h2>
     </div>
-    <div class="subteam-grid">
-        <article class="subteam">
-            <div class="subteam-num mono">01</div>
-            <h3>Mechanical</h3>
-            <p>Drivetrains, intakes, manipulators. The students with aluminum chips in their hoodies and bandaged fingers.</p>
-            <ul class="tags"><li>Mill</li><li>Lathe</li><li>3D&nbsp;Print</li><li>Sheet&nbsp;metal</li></ul>
-        </article>
-        <article class="subteam">
-            <div class="subteam-num mono">02</div>
-            <h3>Electrical</h3>
-            <p>Battery to motor controller to RoboRIO and back. If it has a wire on it, this is where it ends up.</p>
-            <ul class="tags"><li>CAN&nbsp;bus</li><li>PDH</li><li>Harness</li><li>Wiring</li></ul>
-        </article>
-        <article class="subteam">
-            <div class="subteam-num mono">03</div>
-            <h3>Programming</h3>
-            <p>Code on the RoboRIO, autonomous routines, drive-team telemetry, and vision when the game calls for it.</p>
-            <ul class="tags"><li>Java</li><li>WPILib</li><li>Auto</li><li>Vision</li></ul>
-        </article>
-        <article class="subteam">
-            <div class="subteam-num mono">04</div>
-            <h3>Design / CAD</h3>
-            <p>Concept sketches to a fully-toleranced assembly. The bridge between strategy and the machine shop.</p>
-            <ul class="tags"><li>Fusion</li><li>Inventor</li><li>Onshape</li><li>DFM</li></ul>
-        </article>
-        <article class="subteam">
-            <div class="subteam-num mono">05</div>
-            <h3>Business &amp; Outreach</h3>
-            <p>Sponsor relations, fundraising, the team binder, social media, and the demos we bring into schools across Queens.</p>
-            <ul class="tags"><li>Sponsors</li><li>Comms</li><li>Outreach</li><li>Budget</li></ul>
-        </article>
-        <article class="subteam subteam--mentors">
-            <div class="subteam-num mono">06</div>
-            <h3>Mentors</h3>
-            <p>Newtown HS faculty plus working engineers and alumni who show up after the bell to teach milling, soldering and design review.</p>
-            <ul class="tags"><li>NHS&nbsp;faculty</li><li>Engineers</li><li>Alumni</li></ul>
-        </article>
-    </div>
-</section>
 
-<!-- BUILD SEASON TIMELINE -->
-<section class="section">
-    <div class="section-head">
-        <span class="mono section-tag">§ 03 — THE SIX-WEEK BUILD</span>
-        <h2>From kickoff crate to competition floor in about 45 days.</h2>
-        <p class="section-sub">
-            FRC is a sprint with a fixed deadline. Each January, FIRST releases the year's game;
-            teams worldwide get the same kit and the same calendar. Here's how 1635 runs it.
+    <div class="split split--wide">
+      <div class="prose" data-reveal>
+        <p class="lede">
+          Newtown High School sits in Elmhurst, one of the most linguistically diverse
+          neighbourhoods on earth. Our roster reflects it exactly.
         </p>
+        <p>
+          Each January FIRST releases the season's game. Six weeks later a 120-pound
+          robot has to pass inspection. In between, students learn mechanical design,
+          electrical systems, software and project management the only way that really
+          works — with something real on the line and a clock running.
+        </p>
+        <p>
+          Most of them arrive knowing nothing. That is the intended starting point. The
+          seniors running our mill were freshmen who could not read a caliper three
+          years ago.
+        </p>
+      </div>
+
+      <figure class="frame" style="aspect-ratio:4/5" data-reveal data-fx="scale">
+        <div class="reel" style="position:absolute;inset:0">
+          <img src="images/about-mission-1.JPG" alt="" class="is-on">
+          <img src="images/about-mission-2.JPG" alt="">
+          <img src="images/about-mission-3.JPG" alt="">
+          <img src="images/about-mission-4.JPG" alt="">
+          <img src="images/about-mission-5.JPG" alt="">
+          <img src="images/about-mission-6.JPG" alt="">
+        </div>
+        <figcaption class="note">IN THE SHOP · ROOM B2</figcaption>
+      </figure>
     </div>
-    <ol class="timeline">
-        <li class="tl-step"><div class="tl-head"><span class="tl-num">W01</span><span class="tl-week">JAN · KICKOFF</span></div><h3>Read the rules. Argue strategy.</h3><p>The whole team in one room with whiteboards, the kit-of-parts, and pizza. We leave with a strategy and a few rough concepts.</p></li>
-        <li class="tl-step"><div class="tl-head"><span class="tl-num">W02</span><span class="tl-week">PROTOTYPE</span></div><h3>Wood, zip-ties, bad ideas.</h3><p>Mechanism prototypes in plywood and extrusion. The ones that survive become the robot's real subsystems.</p></li>
-        <li class="tl-step"><div class="tl-head"><span class="tl-num">W03</span><span class="tl-week">CAD LOCK</span></div><h3>Design the whole machine.</h3><p>Prototypes become a full CAD assembly — frame, gearboxes, intake and wiring laid out on one model.</p></li>
-        <li class="tl-step"><div class="tl-head"><span class="tl-num">W04</span><span class="tl-week">MANUFACTURE</span></div><h3>CNC, mill, print, repeat.</h3><p>Parts come off the mill and the 3D printers. Programming starts on a chassis-only practice base.</p></li>
-        <li class="tl-step"><div class="tl-head"><span class="tl-num">W05</span><span class="tl-week">INTEGRATE</span></div><h3>Wire it. Code it. Test it.</h3><p>Subsystems mounted, electronics flashed, autonomous routines tested over and over against a taped field.</p></li>
-        <li class="tl-step"><div class="tl-head"><span class="tl-num">W06</span><span class="tl-week">COMPETE</span></div><h3>Load the truck.</h3><p>Final tuning, driver practice, paperwork in the binder — then an early bus to the Armory.</p></li>
-    </ol>
+  </div>
 </section>
 
-<!-- TEAM ROSTER (year tabs, single photo per season) -->
-<section class="section section--bg2">
-    <div class="section-head">
-        <span class="mono section-tag">§ 04 — THE ROSTER</span>
-        <h2>The people behind the robot.</h2>
-        <p class="section-sub">
-            One photo, one season, one crew. Roughly fifty students rotate through the shop
-            each winter — mechanical, electrical, programming, design and business.
-        </p>
+<!-- ══ SUBTEAMS ══ -->
+<section class="bay bay--steel">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 02 — Structure</span>
+      <h2>Five subteams. One robot.</h2>
+      <p>Pick one in October. Nobody stays boxed in — half the team ends up cross-trained by January anyway.</p>
     </div>
 
-    <div class="year-tabs">
-        <button class="year-tab active" data-year="2026">SEASON 2026</button>
-        <button class="year-tab" data-year="2027">SEASON 2027</button>
+    <div class="units" data-wave>
+      <article class="unit">
+        <span class="note note--red">01</span>
+        <h3>Mechanical</h3>
+        <p>Drivetrains, intakes, manipulators. The students with aluminium chips in their hoodies.</p>
+        <ul class="chips"><li>Mill</li><li>Lathe</li><li>3D print</li><li>Sheet metal</li></ul>
+      </article>
+      <article class="unit">
+        <span class="note note--red">02</span>
+        <h3>Electrical</h3>
+        <p>Battery to motor controller to RoboRIO and back. If it has a wire on it, it ends up here.</p>
+        <ul class="chips"><li>CAN bus</li><li>PDH</li><li>Harness</li><li>Sensors</li></ul>
+      </article>
+      <article class="unit">
+        <span class="note note--red">03</span>
+        <h3>Programming</h3>
+        <p>Autonomous routines, drive-team telemetry, and vision when the game calls for it.</p>
+        <ul class="chips"><li>Java</li><li>WPILib</li><li>Auto</li><li>Vision</li></ul>
+      </article>
+      <article class="unit">
+        <span class="note note--red">04</span>
+        <h3>Design / CAD</h3>
+        <p>Concept sketch to fully-toleranced assembly. The bridge between strategy and the machine shop.</p>
+        <ul class="chips"><li>Fusion</li><li>Inventor</li><li>Onshape</li><li>DFM</li></ul>
+      </article>
+      <article class="unit">
+        <span class="note note--red">05</span>
+        <h3>Business &amp; Outreach</h3>
+        <p>Sponsors, fundraising, the team binder, and demos we bring into schools across Queens.</p>
+        <ul class="chips"><li>Sponsors</li><li>Comms</li><li>Outreach</li><li>Budget</li></ul>
+      </article>
+      <article class="unit" style="background:var(--graphite)">
+        <span class="note" style="color:var(--amber)">06</span>
+        <h3>Mentors</h3>
+        <p>Faculty plus working engineers and alumni who show up after the bell to teach milling and design review.</p>
+        <ul class="chips"><li>NHS faculty</li><li>Engineers</li><li>Alumni</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUILD SEASON RAIL ══ -->
+<section class="bay">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 03 — Build season</span>
+      <h2>Kickoff crate to competition floor in about 45 days.</h2>
+      <p>The same six weeks every team on earth gets. Scroll the rail sideways.</p>
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="rail" data-nudge data-reveal>
+      <article class="week">
+        <span class="week__no">01</span>
+        <span class="note note--red">Jan · Kickoff</span>
+        <h3>Read the rules. Argue strategy.</h3>
+        <p>Whole team in one room with whiteboards, the kit-of-parts and pizza. We leave with a strategy and three rough concepts.</p>
+      </article>
+      <article class="week">
+        <span class="week__no">02</span>
+        <span class="note note--red">Prototype</span>
+        <h3>Wood, zip-ties, bad ideas.</h3>
+        <p>Mechanisms in plywood and extrusion. The two that survive become real subsystems; the rest teach us something.</p>
+      </article>
+      <article class="week">
+        <span class="week__no">03</span>
+        <span class="note note--red">CAD lock</span>
+        <h3>Design the whole machine.</h3>
+        <p>Prototypes become a full assembly — frame, gearboxes, intake and wiring laid out on one model before a chip is cut.</p>
+      </article>
+      <article class="week">
+        <span class="week__no">04</span>
+        <span class="note note--red">Manufacture</span>
+        <h3>CNC, mill, print, repeat.</h3>
+        <p>Parts come off the mill and the printers. Programming starts on a chassis-only practice base.</p>
+      </article>
+      <article class="week">
+        <span class="week__no">05</span>
+        <span class="note note--red">Integrate</span>
+        <h3>Wire it. Code it. Break it.</h3>
+        <p>Subsystems mounted, electronics flashed, autonomous run over and over against a taped field until it stops surprising us.</p>
+      </article>
+      <article class="week">
+        <span class="week__no">06</span>
+        <span class="note note--red">Compete</span>
+        <h3>Load the truck.</h3>
+        <p>Final tuning, driver practice, binder finished — then an early bus to the Armory.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROSTER ══ -->
+<section class="bay bay--steel">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 04 — Roster</span>
+      <h2>Who runs what.</h2>
+      <p>Leads for the 2026 season. Replace these with real names — the layout takes any number of entries.</p>
     </div>
 
-    <div class="team-year active" data-year="2026">
-        <div class="team-photo-layout">
-            <div>
-                <figure class="frame team-photo">
-                    <img src="images/team/2026/team-photo.jpg" alt="Team 1635 roster, 2026 season">
-                    <figcaption class="frame-cap"><span class="dot"></span>2026 ROSTER · NEWTOWN HS, ROOM B2</figcaption>
-                </figure>
-                <p class="roster-note">// PHOTOGRAPHED AT THE NYC REGIONAL, THE ARMORY</p>
-            </div>
-            <aside class="bracket-card">
-                <header>// SEASON 2026</header>
-                <dl class="kv">
-                    <dt>Roster</dt><dd>~50 students</dd>
-                    <dt>Captain</dt><dd>Name here</dd>
-                    <dt>Mech lead</dt><dd>Name here</dd>
-                    <dt>Electrical</dt><dd>Name here</dd>
-                    <dt>Programming</dt><dd>Name here</dd>
-                    <dt>Business</dt><dd>Name here</dd>
-                    <dt>Head mentor</dt><dd>Name here</dd>
-                    <dt>Game</dt><dd>REBUILT</dd>
-                </dl>
-                <footer>FRC.TEAM.1635 ▮ 2026 CREW</footer>
-            </aside>
-        </div>
-    </div>
+    <ul class="roster roster--leads" data-wave data-reveal>
+      <li><b>Name Here</b><span class="note">Team captain</span></li>
+      <li><b>Name Here</b><span class="note">Mechanical lead</span></li>
+      <li><b>Name Here</b><span class="note">Electrical lead</span></li>
+      <li><b>Name Here</b><span class="note">Programming lead</span></li>
+      <li><b>Name Here</b><span class="note">Design / CAD lead</span></li>
+      <li><b>Name Here</b><span class="note">Business lead</span></li>
+      <li><b>Name Here</b><span class="note">Drive coach</span></li>
+      <li><b>Name Here</b><span class="note">Head mentor</span></li>
+    </ul>
 
-    <div class="team-year" data-year="2027">
-        <div class="team-photo-layout">
-            <div>
-                <figure class="frame team-photo">
-                    <img src="images/team/2027/team-photo.jpg" alt="Team 1635 roster, 2027 season">
-                    <figcaption class="frame-cap"><span class="dot"></span>2027 ROSTER · NEWTOWN HS, ROOM B2</figcaption>
-                </figure>
-                <p class="roster-note">// PHOTO TO COME — 2027 SEASON</p>
-            </div>
-            <aside class="bracket-card">
-                <header>// SEASON 2027</header>
-                <dl class="kv">
-                    <dt>Roster</dt><dd>TBD</dd>
-                    <dt>Captain</dt><dd>TBD</dd>
-                    <dt>Mech lead</dt><dd>TBD</dd>
-                    <dt>Electrical</dt><dd>TBD</dd>
-                    <dt>Programming</dt><dd>TBD</dd>
-                    <dt>Business</dt><dd>TBD</dd>
-                    <dt>Head mentor</dt><dd>TBD</dd>
-                    <dt>Game</dt><dd>Announced Jan 2027</dd>
-                </dl>
-                <footer>FRC.TEAM.1635 ▮ 2027 CREW</footer>
-            </aside>
-        </div>
+    <div class="titleblock mt-7" data-reveal style="margin-bottom:var(--s-5)">
+      <span class="note note--red titleblock__tag">Full crew · 2026</span>
     </div>
+    <ul class="roster" data-reveal>
+      <li><b>Member Name</b><span class="note">Mechanical</span></li>
+      <li><b>Member Name</b><span class="note">Mechanical</span></li>
+      <li><b>Member Name</b><span class="note">Electrical</span></li>
+      <li><b>Member Name</b><span class="note">Electrical</span></li>
+      <li><b>Member Name</b><span class="note">Programming</span></li>
+      <li><b>Member Name</b><span class="note">Programming</span></li>
+      <li><b>Member Name</b><span class="note">Design / CAD</span></li>
+      <li><b>Member Name</b><span class="note">Business</span></li>
+      <li><b>Member Name</b><span class="note">Outreach</span></li>
+      <li><b>Member Name</b><span class="note">Mentor</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="band">
+  <div class="band__inner">
+    <span class="note">[ Open door ]</span>
+    You do not need to know anything. You need to show up.
+  </div>
+</section>
+
+<section class="bay bay--flush">
+  <div class="shell" style="text-align:center">
+    <a href="contact.html" class="btn" data-magnetic data-reveal>
+      Ask about joining
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
+    </a>
+  </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div>
-            <div class="footer-brand">
-                <img src="images/logo.png" alt="Team 1635 Logo">
-                <div class="footer-num">1635</div>
-            </div>
-            <div class="footer-name">NEWTOWN TECHNOTICS</div>
-            <div class="footer-sub mono">FRC TEAM · EST. 2005 · ELMHURST, QUEENS, NY</div>
-        </div>
-        <div class="footer-cols">
-            <div>
-                <h4>EXPLORE</h4>
-                <ul>
-                    <li><a href="about.html">About the team</a></li>
-                    <li><a href="robot.html">The 2026 robot</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="sponsors.html">Sponsors</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>PROGRAM</h4>
-                <ul>
-                    <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC? ↗</a></li>
-                    <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">The Blue Alliance ↗</a></li>
-                    <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · Team 1635 ↗</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>CONNECT</h4>
-                <ul>
-                    <li><a href="contact.html">Join the team</a></li>
-                    <li><a href="contact.html">Become a sponsor</a></li>
-                    <li><a href="#">Instagram ↗</a></li>
-                    <li><a href="#">YouTube ↗</a></li>
-                </ul>
-            </div>
-        </div>
+<footer class="foot">
+  <div class="foot__grid">
+    <div>
+      <div class="foot__num">1635</div>
+      <div class="note note--chalk mt-6" style="letter-spacing:.1em">NEWTOWN TECHNOTICS</div>
+      <p class="note" style="margin-top:6px">FRC · EST. 2005 · ELMHURST, QUEENS, NY</p>
     </div>
-    <div class="footer-bottom">
-        <span class="mono">© 2005&ndash;2026 NEWTOWN TECHNOTICS · FRC TEAM 1635</span>
-        <span class="mono">NEWTOWN HIGH SCHOOL · ELMHURST, QUEENS, NY</span>
-        <span class="mono dot-blink">SEASON 2026 — REBUILT</span>
+    <div class="foot__cols">
+      <div><h4>Site</h4><ul>
+        <li><a href="about.html">The team</a></li>
+        <li><a href="robot.html">The robot</a></li>
+        <li><a href="blog.html">Logbook</a></li>
+        <li><a href="sponsors.html">Backers</a></li>
+      </ul></div>
+      <div><h4>Program</h4><ul>
+        <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC ↗</a></li>
+        <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">Blue Alliance ↗</a></li>
+        <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · 1635 ↗</a></li>
+      </ul></div>
+      <div><h4>Reach us</h4><ul>
+        <li><a href="contact.html">Join the team</a></li>
+        <li><a href="contact.html">Sponsor a season</a></li>
+        <li><a href="#">Instagram ↗</a></li>
+        <li><a href="#">YouTube ↗</a></li>
+      </ul></div>
     </div>
+  </div>
+  <div class="foot__bottom">
+    <span class="note">© 2005–2026 Newtown Technotics · FRC 1635</span>
+    <span class="note">Newtown High School · Elmhurst, Queens</span>
+    <span class="note live">Season 2026 — Rebuilt</span>
+  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/script.js"></script>
 <script src="js/motion.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

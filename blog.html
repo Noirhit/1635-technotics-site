@@ -1,116 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Build season journals, competition recaps, and team news from Newtown Technotics — FRC Team 1635.">
-    <title>Blog — 1635 Technotics</title>
-    <link rel="icon" type="image/png" href="images/favicon.png?v=3">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Build-season journals and competition recaps from FRC Team 1635 Newtown Technotics.">
+<title>Logbook — 1635 Newtown Technotics</title>
+<link rel="icon" type="image/png" href="images/favicon.png?v=4">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="site-header">
-    <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="Team 1635 Logo">
-        <span>
-            <span class="logo-num">1635</span>
-            <span class="logo-sub">Newtown Technotics · FRC</span>
-        </span>
-    </a>
-    <nav class="main-nav">
-        <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="robot.html">The Robot</a></li>
-            <li><a href="blog.html" class="active">Blog</a></li>
-            <li><a href="sponsors.html">Sponsors</a></li>
-            <li><a href="contact.html" class="nav-cta">Contact us</a></li>
-        </ul>
-    </nav>
+<header class="nav">
+  <a class="mark" href="index.html">
+    <img src="images/logo.png" alt="">
+    <span><span class="mark__num">1635</span><span class="mark__sub">Newtown Technotics</span></span>
+  </a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav__links">
+    <a href="index.html">Index</a>
+    <a href="about.html">The Team</a>
+    <a href="robot.html">The Robot</a>
+    <a href="blog.html" aria-current="page">Logbook</a>
+    <a href="sponsors.html">Backers</a>
+    <a href="contact.html" class="nav__cta">Contact us</a>
+  </nav>
+  <i class="nav__progress"></i>
 </header>
 
 <main>
 
-<!-- PAGE HEADER -->
-<section class="page-header">
-    <div class="container">
-        <div class="page-meta">
-            <div class="crosshair"><span></span><span></span><span></span></div>
-            <span class="mono">// CHAPTER 03 · DISPATCHES FROM THE SHOP</span>
-        </div>
-        <h1>The <span class="highlight">blog.</span></h1>
-        <p>Build-season journals, competition recaps, and team news — straight from the shop on Newtown HS's Room B2.</p>
+<section class="bay bay--flush" style="padding-top:clamp(4rem,9vw,7rem)">
+  <div class="shell">
+    <div class="hero__meta o" style="margin-bottom:var(--s-5)">
+      <span class="datum" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="note">Sheet 03 of 05</span>
+      <span class="note note--red">Dispatches</span>
     </div>
+    <h1 class="o" style="font-size:var(--t-xxl)">The <em style="font-style:normal;color:var(--red)">logbook.</em></h1>
+    <p class="o" style="max-width:56ch;margin-top:var(--s-5);font-size:var(--t-md);color:var(--chalk-2)">
+      Written during build season with aluminium dust on the keyboard, and during
+      competition from a folding chair in the stands.
+    </p>
+  </div>
 </section>
 
-<!-- POSTS -->
-<section class="section">
-    <div class="section-head">
-        <span class="mono section-tag">§ 01 — ALL POSTS</span>
-        <h2>From the floor of the shop.</h2>
+<section class="bay">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 01 — All entries</span>
+      <h2>Newest first.</h2>
     </div>
-    <div class="card-grid" id="posts-container">
-        <p class="mono" style="color:var(--fg-3); padding: 40px 0;">// LOADING POSTS…</p>
+    <div class="cards" id="feed">
+      <p class="note">// Loading entries…</p>
     </div>
+  </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div>
-            <div class="footer-brand">
-                <img src="images/logo.png" alt="Team 1635 Logo">
-                <div class="footer-num">1635</div>
-            </div>
-            <div class="footer-name">NEWTOWN TECHNOTICS</div>
-            <div class="footer-sub mono">FRC TEAM · EST. 2005 · ELMHURST, QUEENS, NY</div>
-        </div>
-        <div class="footer-cols">
-            <div>
-                <h4>EXPLORE</h4>
-                <ul>
-                    <li><a href="about.html">About the team</a></li>
-                    <li><a href="robot.html">The 2026 robot</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="sponsors.html">Sponsors</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>PROGRAM</h4>
-                <ul>
-                    <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC? ↗</a></li>
-                    <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">The Blue Alliance ↗</a></li>
-                    <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · Team 1635 ↗</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>CONNECT</h4>
-                <ul>
-                    <li><a href="contact.html">Join the team</a></li>
-                    <li><a href="contact.html">Become a sponsor</a></li>
-                    <li><a href="#">Instagram ↗</a></li>
-                    <li><a href="#">YouTube ↗</a></li>
-                </ul>
-            </div>
-        </div>
+<footer class="foot">
+  <div class="foot__grid">
+    <div>
+      <div class="foot__num">1635</div>
+      <div class="note note--chalk mt-6" style="letter-spacing:.1em">NEWTOWN TECHNOTICS</div>
+      <p class="note" style="margin-top:6px">FRC · EST. 2005 · ELMHURST, QUEENS, NY</p>
     </div>
-    <div class="footer-bottom">
-        <span class="mono">© 2005&ndash;2026 NEWTOWN TECHNOTICS · FRC TEAM 1635</span>
-        <span class="mono">NEWTOWN HIGH SCHOOL · ELMHURST, QUEENS, NY</span>
-        <span class="mono dot-blink">SEASON 2026 — REBUILT</span>
+    <div class="foot__cols">
+      <div><h4>Site</h4><ul>
+        <li><a href="about.html">The team</a></li>
+        <li><a href="robot.html">The robot</a></li>
+        <li><a href="blog.html">Logbook</a></li>
+        <li><a href="sponsors.html">Backers</a></li>
+      </ul></div>
+      <div><h4>Program</h4><ul>
+        <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC ↗</a></li>
+        <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">Blue Alliance ↗</a></li>
+        <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · 1635 ↗</a></li>
+      </ul></div>
+      <div><h4>Reach us</h4><ul>
+        <li><a href="contact.html">Join the team</a></li>
+        <li><a href="contact.html">Sponsor a season</a></li>
+        <li><a href="#">Instagram ↗</a></li>
+        <li><a href="#">YouTube ↗</a></li>
+      </ul></div>
     </div>
+  </div>
+  <div class="foot__bottom">
+    <span class="note">© 2005–2026 Newtown Technotics · FRC 1635</span>
+    <span class="note">Newtown High School · Elmhurst, Queens</span>
+    <span class="note live">Season 2026 — Rebuilt</span>
+  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/script.js"></script>
 <script src="js/motion.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>

@@ -1,304 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Newtown Technotics — FRC Team 1635. Building robots and engineers since 2005 out of Newtown High School, Elmhurst, Queens.">
-    <title>1635 Technotics — FRC Team 1635</title>
-    <link rel="icon" type="image/png" href="images/favicon.png?v=3">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Newtown Technotics — FRC Team 1635. A public high school in Elmhurst, Queens that has built a competition robot every winter since 2005.">
+<title>1635 Newtown Technotics — FRC</title>
+<link rel="icon" type="image/png" href="images/favicon.png?v=4">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=" js";</script>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<header class="site-header">
-    <a href="index.html" class="logo">
-        <img src="images/logo.png" alt="Team 1635 Logo">
-        <span>
-            <span class="logo-num">1635</span>
-            <span class="logo-sub">Newtown Technotics · FRC</span>
-        </span>
-    </a>
-    <nav class="main-nav">
-        <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="robot.html">The Robot</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="sponsors.html">Sponsors</a></li>
-            <li><a href="contact.html" class="nav-cta">Contact us</a></li>
-        </ul>
-    </nav>
+<header class="nav">
+  <a class="mark" href="index.html">
+    <img src="images/logo.png" alt="">
+    <span>
+      <span class="mark__num">1635</span>
+      <span class="mark__sub">Newtown Technotics</span>
+    </span>
+  </a>
+  <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav__links">
+    <a href="index.html" aria-current="page">Index</a>
+    <a href="about.html">The Team</a>
+    <a href="robot.html">The Robot</a>
+    <a href="blog.html">Logbook</a>
+    <a href="sponsors.html">Backers</a>
+    <a href="contact.html" class="nav__cta">Contact us</a>
+  </nav>
+  <i class="nav__progress"></i>
 </header>
 
 <main>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section class="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div id="hero-canvas" aria-hidden="true"></div>
-    <div class="hero-ticker" aria-hidden="true">
-        <div class="ticker-track">
-            <span>● ROOKIE YEAR 2005</span><span>● FRC TEAM 1635</span><span>● NEWTOWN TECHNOTICS</span><span>● ELMHURST, QUEENS, NY</span><span>● NYC FIRST · THE ARMORY</span><span>● SEASON 2026 — REBUILT</span><span>● ROOKIE YEAR 2005</span><span>● FRC TEAM 1635</span><span>● NEWTOWN TECHNOTICS</span><span>● ELMHURST, QUEENS, NY</span><span>● NYC FIRST · THE ARMORY</span><span>● SEASON 2026 — REBUILT</span>
-        </div>
+  <canvas id="rig" aria-hidden="true"></canvas>
+  <div class="hero__grid" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__meta o">
+      <span class="datum" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="note">FRC 1635 · EST. 2005</span>
+      <span class="note">NEWTOWN HS · ELMHURST, QUEENS</span>
+      <span class="note note--red">SEASON 2026 — REBUILT</span>
     </div>
 
-    <div class="hero-inner">
-        <div class="hero-meta">
-            <div class="crosshair"><span></span><span></span><span></span></div>
-            <div class="hero-meta-lines">
-                <span>// FRC.TEAM_1635 — EST. 2005</span>
-                <span>// NEWTOWN HS · ELMHURST, QUEENS</span>
-                <span>// SEASON 2026 — REBUILT</span>
-            </div>
-        </div>
+    <h1 class="hero__title" data-hero-lines>
+      <span class="line"><span>Six weeks.</span></span>
+      <span class="line"><span>One crate.</span></span>
+      <span class="line"><span><em>One robot.</em></span></span>
+    </h1>
 
-        <h1 class="hero-title">
-            <span class="hero-line"><span class="hero-num">16</span><span class="hero-num">35</span></span>
-            <span class="hero-logo-wrap"><img class="hero-logo" src="images/logo.png" alt="Team 1635 logo"></span>
-        </h1>
+    <p class="hero__lede o">
+      Every January FIRST hands us a rulebook and a box of parts. Six weeks later a
+      120-pound machine rolls off the shop floor at Newtown High School. This is the
+      twenty-first winter we have done it.
+    </p>
 
-        <p class="hero-lede">
-            A robotics team from Newtown High School in Elmhurst, Queens — one of the most diverse
-            neighborhoods on earth. Since 2005 we've taken the same six weeks every winter, the same
-            crate of parts, and turned them into a competition robot on the floor of the Armory.
+    <div class="hero__actions o">
+      <a href="robot.html" class="btn" data-magnetic>
+        Open the 2026 build
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+      <a href="about.html" class="btn btn--line" data-magnetic>Meet the crew</a>
+    </div>
+
+    <div class="stats o">
+      <div class="stat"><span class="stat__n" data-count="2005">0</span><span class="note">Rookie season</span></div>
+      <div class="stat"><span class="stat__n" data-count="21">0</span><span class="note">Seasons run</span></div>
+      <div class="stat"><span class="stat__n" data-count="50">0</span><span class="note">On the roster</span></div>
+      <div class="stat"><span class="stat__n">6<span class="stat__u">wk</span></span><span class="note">Build window</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>Rookie year 2005</span><span>◆</span><span>FRC Team 1635</span><span>◆</span><span>Newtown Technotics</span><span>◆</span><span>Elmhurst, Queens NY</span><span>◆</span><span>NYC FIRST · The Armory</span><span>◆</span><span>Season 2026 — Rebuilt</span><span>◆</span>
+    <span>Rookie year 2005</span><span>◆</span><span>FRC Team 1635</span><span>◆</span><span>Newtown Technotics</span><span>◆</span><span>Elmhurst, Queens NY</span><span>◆</span><span>NYC FIRST · The Armory</span><span>◆</span><span>Season 2026 — Rebuilt</span><span>◆</span>
+  </div>
+</div>
+
+<!-- ══ MANIFESTO ══ -->
+<section class="band">
+  <div class="band__inner">
+    <span class="note">[ Mission ]</span>
+    Build robots. Build engineers. Teach a public high school in Queens to weld, wire,
+    code and lead — against a deadline that does not move.
+  </div>
+</section>
+
+<!-- ══ WHO ══ -->
+<section class="bay bay--flush">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 01 — Who we are</span>
+      <h2>A robotics team that happens to be a public high school.</h2>
+    </div>
+
+    <div class="split split--wide">
+      <div class="prose" data-reveal>
+        <p class="lede">
+          Newtown High School sits in Elmhurst, a neighbourhood where the students
+          collectively speak dozens of languages. Every winter a chunk of them spend
+          their nights over a CAD model, a soldering iron and a half-built drivetrain.
         </p>
-
-        <div class="hero-cta">
-            <a href="robot.html" class="btn">Meet the 2026 robot
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
-            </a>
-            <a href="contact.html" class="btn btn--ghost">Join the team</a>
-        </div>
-
-        <div class="hero-stats">
-            <div class="stat"><span class="stat-num" data-count="2005">2005</span><span class="stat-label">Rookie season</span></div>
-            <div class="stat"><span class="stat-num" data-count="21">21</span><span class="stat-label">Years competing</span></div>
-            <div class="stat"><span class="stat-num" data-count="50">50</span><span class="stat-label">Students on roster</span></div>
-            <div class="stat"><span class="stat-num">6<span class="stat-frac">wk</span></span><span class="stat-label">To build a robot</span></div>
-        </div>
-    </div>
-
-    <figure class="hero-band">
-        <div class="hero-band-img">
-            <img src="images/robot-current.JPG" alt="Team 1635's 2026 robot">
-        </div>
-        <figcaption class="hero-band-cap"><span class="dot"></span>FIG.01 — 2026 REBUILT COMP BOT · NYC REGIONAL, THE ARMORY</figcaption>
-    </figure>
-</section>
-
-<!-- MISSION STRIP -->
-<section class="strip">
-    <div class="strip-inner">
-        <span class="mono strip-tag">[MISSION]</span>
-        Build robots. Build engineers. A public high school in Queens teaching itself to weld, wire,
-        code, design and lead — six weeks, every winter, since 2005.
-    </div>
-</section>
-
-<!-- ABOUT PREVIEW -->
-<section class="section">
-    <div class="section-head">
-        <span class="mono section-tag">§ 01 — WHO WE ARE</span>
-        <h2>A robotics team that happens to be a public high school.</h2>
-    </div>
-    <div class="about-grid">
-        <div class="about-copy">
-            <p class="lede">
-                Newtown High School sits in Elmhurst — a neighborhood where the students collectively
-                speak dozens of languages. Every winter a chunk of them spend their nights over a CAD
-                model, a soldering iron, and a half-built drivetrain.
-            </p>
-            <p>
-                We're the <strong>Newtown Technotics — FRC Team 1635</strong>. Each January, FIRST
-                releases the season's game; six weeks later a 120-pound robot rolls off our shop floor.
-                In between is the part the team is really about: learning mechanical engineering,
-                electrical, software and project management against a deadline that does not move.
-            </p>
-            <a href="about.html" class="btn" style="margin-top:8px;">More about the team
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
-            </a>
-            <figure class="frame about-photo" style="margin-top:30px;">
-                <div class="slideshow" style="aspect-ratio:16/10;">
-                    <img src="images/about-1.JPG" alt="" class="slide active">
-                    <img src="images/about-2.JPG" alt="" class="slide">
-                    <img src="images/about-3.JPG" alt="" class="slide">
-                </div>
-                <figcaption class="frame-cap"><span class="dot"></span>TEAM 1635 · NYC REGIONAL, THE ARMORY</figcaption>
-            </figure>
-        </div>
-
-        <aside class="bracket-card">
-            <header>// TEAM CARD</header>
-            <dl class="kv">
-                <dt>Team number</dt><dd>1635</dd>
-                <dt>Name</dt><dd>Newtown Technotics</dd>
-                <dt>Program</dt><dd>FIRST Robotics Comp.</dd>
-                <dt>School</dt><dd>Newtown High School</dd>
-                <dt>City</dt><dd>Elmhurst, Queens, NY</dd>
-                <dt>Founded</dt><dd>2005 · Rookie</dd>
-                <dt>Home event</dt><dd>NYC Regional · Armory</dd>
-                <dt>Season</dt><dd>2026 — REBUILT</dd>
-                <dt>Roster</dt><dd>~50 students</dd>
-            </dl>
-            <footer>FRC.TEAM.1635 ▮ NEWTOWN HS</footer>
-        </aside>
-    </div>
-</section>
-
-<!-- ROBOT PREVIEW -->
-<section class="section section--bg2">
-    <div class="section-head">
-        <span class="mono section-tag">§ 02 — THE 2026 ROBOT · REBUILT</span>
-        <h2>This year's machine, from CAD to the competition floor.</h2>
-        <p class="section-sub">
-            A custom drivetrain, a roller intake, and a launcher tower — designed in CAD,
-            machined and 3D-printed in the shop, and wrapped in red bumpers that read 16 and 35.
+        <p>
+          There is no tryout. Freshmen who have never held a drill end the season
+          running a mill, flashing a RoboRIO, or standing at the field wall as drive
+          team. The robot is the excuse; the engineers are the point.
         </p>
-    </div>
-
-    <div class="two-col">
-        <figure class="frame" style="aspect-ratio:4/3;">
-            <img src="images/robot-current.JPG" alt="2026 robot">
-            <figcaption class="frame-cap"><span class="dot"></span>2026 COMP BOT · "AJ"</figcaption>
-        </figure>
-        <div>
-            <h3 style="font-size:clamp(24px,3vw,36px); margin-bottom:18px;">Meet <span class="highlight">"AJ"</span></h3>
-            <p style="color:var(--fg-2); margin-bottom:16px;">
-                This season's machine: a custom drivetrain, a compliant-roller intake tower,
-                and a launcher built in the shop. Designed in CAD, manufactured in-house, and
-                tuned over six weeks of build season.
-            </p>
-            <p style="color:var(--fg-2); margin-bottom:24px;">
-                Each subsystem started as a wood-and-extrusion prototype before becoming the
-                machined and printed parts you see on the field.
-            </p>
-            <a href="robot.html" class="btn">View specs & CAD
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- BLOG PREVIEW -->
-<section class="section">
-    <div class="section-head">
-        <span class="mono section-tag">§ 03 — LATEST UPDATES</span>
-        <h2>From the shop and the field.</h2>
-        <p class="section-sub">
-            Build season journals, competition recaps, and team news. Updated weekly during the season.
+        <p>
+          Since our rookie year we have competed every single season — most recently at
+          the NYC Regional inside the Armory, where you will find us in the stands
+          holding three-foot red <strong>16</strong> and <strong>35</strong> and never
+          quite sitting down.
         </p>
-    </div>
-    <div class="card-grid" id="blog-preview-container"></div>
-    <div style="text-align:center; margin-top:36px;">
-        <a href="blog.html" class="btn btn--ghost">All posts
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+        <a href="about.html" class="btn btn--line mt-6" data-magnetic>
+          The full roster
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
         </a>
+      </div>
+
+      <aside class="ticked" style="background:var(--graphite);border:1px solid var(--edge);padding:var(--s-5)" data-reveal data-fx="left">
+        <span class="note note--red" style="display:block;margin-bottom:var(--s-4)">// Team card</span>
+        <dl class="sheet">
+          <dt>Number</dt><dd>1635</dd>
+          <dt>Name</dt><dd>Newtown Technotics</dd>
+          <dt>Program</dt><dd>FIRST Robotics Comp.</dd>
+          <dt>School</dt><dd>Newtown High School</dd>
+          <dt>City</dt><dd>Elmhurst, Queens</dd>
+          <dt>Founded</dt><dd>2005 · Rookie</dd>
+          <dt>Home event</dt><dd>NYC Regional</dd>
+          <dt>Season</dt><dd>2026 — Rebuilt</dd>
+        </dl>
+        <span class="note" style="display:block;margin-top:var(--s-4)">FRC.TEAM.1635 ▮ NHS</span>
+      </aside>
     </div>
+  </div>
 </section>
 
-<!-- SPONSORS PREVIEW -->
-<section class="section section--bg2">
-    <div class="section-head">
-        <span class="mono section-tag">§ 04 — POWERED BY</span>
-        <h2>We don't exist without these people.</h2>
-        <p class="section-sub">
-            An FRC season runs into the tens of thousands of dollars once you count registration,
-            parts, machining and travel. These partners make it possible.
+<!-- ══ ROBOT ══ -->
+<section class="bay bay--steel">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 02 — The machine</span>
+      <h2>Meet AJ.</h2>
+      <p>Custom six-wheel base, compliant-roller intake, two-stage elevator and a flywheel launcher. Drawn in CAD, cut on our own mill, tuned until the last hour before load-in.</p>
+    </div>
+
+    <div class="split split--flip">
+      <div class="prose" data-reveal>
+        <p class="lede">Every subsystem starts as plywood and zip-ties.</p>
+        <p>
+          Week two of build season the shop fills with prototypes that mostly do not
+          work. The two or three that survive get toleranced, machined and bolted to a
+          frame. That is the whole method — build the bad version fast, learn from it,
+          then build the real one.
         </p>
+        <a href="robot.html" class="btn mt-6" data-magnetic>
+          Specs, CAD and the exploded view
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+
+      <figure class="frame" style="aspect-ratio:4/3" data-reveal data-fx="scale">
+        <img src="images/robot-current.JPG" alt="Team 1635's 2026 robot, AJ" data-drift="-6">
+        <figcaption class="note">FIG.01 — 2026 COMP BOT “AJ”</figcaption>
+      </figure>
     </div>
-    <div class="two-col">
-        <figure class="frame" style="aspect-ratio:4/3;">
-            <img src="images/arsenal-sponsor.jpg" alt="Sponsor logos">
-            <figcaption class="frame-cap"><span class="dot"></span>TITLE SPONSOR · ARSENAL</figcaption>
-        </figure>
-        <div>
-            <h3 style="font-size:clamp(22px,2.4vw,30px); margin-bottom:16px;">Our partners</h3>
-            <p style="color:var(--fg-2); margin-bottom:24px;">
-                Title sponsor, host school, program partner, and community supporters —
-                each one keeping the team on the field for another season.
-            </p>
-            <a href="sponsors.html" class="btn">See all sponsors
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
-            </a>
-        </div>
+
+    <div class="specs mt-7" data-wave>
+      <div class="spec"><span class="note note--red">Drive</span><b>Tank · 6WD</b><small>Belt-in-tube, centre drop</small></div>
+      <div class="spec"><span class="note note--red">Motors</span><b>NEO brushless</b><small>Paired per side</small></div>
+      <div class="spec"><span class="note note--red">Launcher</span><b>Flywheel</b><small>Twin wheel, tuned hood</small></div>
+      <div class="spec"><span class="note note--red">Code</span><b>Java · WPILib</b><small>Auto routines + vision</small></div>
     </div>
+  </div>
 </section>
 
-<!-- AWARDS / BY THE NUMBERS -->
-<section class="section">
-    <div class="section-head">
-        <span class="mono section-tag">§ 05 — BY THE NUMBERS</span>
-        <h2>Twenty-one years, one Queens public school.</h2>
+<!-- ══ LOGBOOK ══ -->
+<section class="bay">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 03 — Logbook</span>
+      <h2>What the season actually looked like.</h2>
+      <p>Written from the shop floor during build season, and from the stands during competition.</p>
     </div>
-    <ul class="awards-grid">
-        <li class="award"><span class="award-year mono">2005</span><h3>Rookie season</h3><p>Team 1635 fields its first robot — the start of an unbroken run of FRC seasons out of Newtown High School.</p></li>
-        <li class="award"><span class="award-year mono">'05&ndash;'26</span><h3>21 straight seasons</h3><p>One public school, twenty-one consecutive years of designing, building and competing every single winter.</p></li>
-        <li class="award"><span class="award-year mono">HOME</span><h3>NYC Regional · Armory</h3><p>Our home event runs at the historic Fort Washington Avenue Armory under the NYC FIRST banner.</p></li>
-        <li class="award"><span class="award-year mono">ROSTER</span><h3>~50 students</h3><p>Mechanical, electrical, programming, design and business — plus faculty and engineer mentors.</p></li>
-        <li class="award"><span class="award-year mono">REACH</span><h3>Queens &amp; beyond</h3><p>Demos and workshops in schools across the borough, recruiting the next generation of builders.</p></li>
-        <li class="award"><span class="award-year mono">VALUE</span><h3>Gracious professionalism</h3><p>FIRST's core value, lived in the pit — we help the teams next to us as readily as we compete with them.</p></li>
-    </ul>
+    <div class="cards" id="latest"></div>
+    <div class="mt-7" style="text-align:center" data-reveal>
+      <a href="blog.html" class="btn btn--line" data-magnetic>
+        Every entry
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BACKERS ══ -->
+<section class="bay bay--steel">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 04 — Who pays for it</span>
+      <h2>A season costs more than a school budget covers.</h2>
+      <p>Registration, raw stock, machining, replacement motors and a bus to the Armory. These partners close the gap.</p>
+    </div>
+    <div class="split">
+      <figure class="frame" style="aspect-ratio:16/10" data-reveal data-fx="scale">
+        <img src="images/arsenal-sponsor.jpg" alt="Arsenal New York, title sponsor" data-drift="-5">
+        <figcaption class="note">TITLE SPONSOR — ARSENAL · NEW YORK</figcaption>
+      </figure>
+      <div class="prose" data-reveal>
+        <p class="lede">Their logo goes on the bumper. Their name goes in every match.</p>
+        <p>
+          Sponsorship at any level is tax-deductible and goes straight into parts,
+          registration and travel — not overhead. We will send the packet the same day
+          you ask for it.
+        </p>
+        <a href="sponsors.html" class="btn btn--line mt-6" data-magnetic>See the partners</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RECORD ══ -->
+<section class="bay">
+  <div class="shell">
+    <div class="titleblock" data-reveal>
+      <span class="note note--red titleblock__tag">§ 05 — On the record</span>
+      <h2>Twenty-one winters, one Queens public school.</h2>
+    </div>
+    <div class="units" data-wave>
+      <article class="unit"><span class="note note--red">2005</span><h3>Rookie season</h3><p>Team 1635 fields its first robot — the start of an unbroken run out of Newtown High School.</p></article>
+      <article class="unit"><span class="note note--red">'05 → '26</span><h3>21 straight seasons</h3><p>Twenty-one consecutive years of designing, building and competing every single winter.</p></article>
+      <article class="unit"><span class="note note--red">Home</span><h3>NYC Regional</h3><p>Our home event runs at the Fort Washington Avenue Armory under the NYC FIRST banner.</p></article>
+      <article class="unit"><span class="note note--red">Roster</span><h3>~50 students</h3><p>Mechanical, electrical, programming, design and business — plus faculty and engineer mentors.</p></article>
+      <article class="unit"><span class="note note--red">Reach</span><h3>Queens &amp; beyond</h3><p>Demos and workshops in schools across the borough, recruiting the next crew of builders.</p></article>
+      <article class="unit"><span class="note note--red">Value</span><h3>Gracious professionalism</h3><p>Lived in the pit — we lend a tool to the team we are about to play against.</p></article>
+    </div>
+  </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div>
-            <div class="footer-brand">
-                <img src="images/logo.png" alt="Team 1635 Logo">
-                <div class="footer-num">1635</div>
-            </div>
-            <div class="footer-name">NEWTOWN TECHNOTICS</div>
-            <div class="footer-sub mono">FRC TEAM · EST. 2005 · ELMHURST, QUEENS, NY</div>
-        </div>
-        <div class="footer-cols">
-            <div>
-                <h4>EXPLORE</h4>
-                <ul>
-                    <li><a href="about.html">About the team</a></li>
-                    <li><a href="robot.html">The 2026 robot</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="sponsors.html">Sponsors</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>PROGRAM</h4>
-                <ul>
-                    <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC? ↗</a></li>
-                    <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">The Blue Alliance ↗</a></li>
-                    <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · Team 1635 ↗</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>CONNECT</h4>
-                <ul>
-                    <li><a href="contact.html">Join the team</a></li>
-                    <li><a href="contact.html">Become a sponsor</a></li>
-                    <li><a href="#">Instagram ↗</a></li>
-                    <li><a href="#">YouTube ↗</a></li>
-                </ul>
-            </div>
-        </div>
+<footer class="foot">
+  <div class="foot__grid">
+    <div>
+      <div class="foot__num">1635</div>
+      <div class="note note--chalk mt-6" style="letter-spacing:.1em">NEWTOWN TECHNOTICS</div>
+      <p class="note" style="margin-top:6px">FRC · EST. 2005 · ELMHURST, QUEENS, NY</p>
     </div>
-    <div class="footer-bottom">
-        <span class="mono">© 2005&ndash;2026 NEWTOWN TECHNOTICS · FRC TEAM 1635</span>
-        <span class="mono">NEWTOWN HIGH SCHOOL · ELMHURST, QUEENS, NY</span>
-        <span class="mono dot-blink">SEASON 2026 — REBUILT</span>
+    <div class="foot__cols">
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="about.html">The team</a></li>
+          <li><a href="robot.html">The robot</a></li>
+          <li><a href="blog.html">Logbook</a></li>
+          <li><a href="sponsors.html">Backers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Program</h4>
+        <ul>
+          <li><a href="https://www.firstinspires.org/" target="_blank" rel="noopener">What is FRC ↗</a></li>
+          <li><a href="https://www.thebluealliance.com/team/1635" target="_blank" rel="noopener">Blue Alliance ↗</a></li>
+          <li><a href="https://frc-events.firstinspires.org/team/1635" target="_blank" rel="noopener">FIRST · 1635 ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <ul>
+          <li><a href="contact.html">Join the team</a></li>
+          <li><a href="contact.html">Sponsor a season</a></li>
+          <li><a href="#">Instagram ↗</a></li>
+          <li><a href="#">YouTube ↗</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
+  <div class="foot__bottom">
+    <span class="note">© 2005–2026 Newtown Technotics · FRC 1635</span>
+    <span class="note">Newtown High School · Elmhurst, Queens</span>
+    <span class="note live">Season 2026 — Rebuilt</span>
+  </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/rig.js"></script>
 <script src="js/motion.js"></script>
-<script src="js/three-hero.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
