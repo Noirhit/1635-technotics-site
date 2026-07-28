@@ -1224,3 +1224,85 @@ figure { margin: 0; }
 
 /* === Highlight (back-compat) === */
 .highlight { color: var(--accent); }
+
+/* ============================================
+   MOTION SYSTEM
+   ============================================ */
+:root {
+    --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-snap:  cubic-bezier(0.7, 0, 0.2, 1);
+    --dur-1: 180ms;
+    --dur-2: 450ms;
+    --dur-3: 900ms;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Hero WebGL canvas — sits behind hero content */
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+#hero-canvas canvas { width: 100%; height: 100%; display: block; }
+.hero-inner, .hero-band { position: relative; z-index: 2; }
+.hero-line { overflow: hidden; }
+
+/* Stat numbers read as instrument readouts */
+.stat-num, .stat-number, .spec-value, .footer-num {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Frame image zoom — one hover language for all framed media */
+.frame img { transition: transform 0.8s var(--ease-out); }
+.frame:hover img { transform: scale(1.04); }
+.slideshow .slide { transition: opacity 0.8s ease-in-out, transform 0.8s var(--ease-out); }
+
+/* Underline draw on footer + contact links */
+.site-footer .footer-cols a,
+.contact-info a {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.35s var(--ease-out), color 0.15s;
+}
+.site-footer .footer-cols a:hover,
+.contact-info a:hover { background-size: 100% 1px; }
+
+/* Modal entrance */
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(14px) scale(0.985); }
+    to   { opacity: 1; transform: none; }
+}
+.modal-backdrop.open .modal { animation: modalIn 0.35s var(--ease-out) both; }
+
+/* Ticker pause on hover */
+.hero-ticker:hover .ticker-track { animation-play-state: paused; }
+
+/* ============================================
+   TEAM PHOTO LAYOUT (single roster photo per year)
+   ============================================ */
+.team-photo-layout {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+}
+@media (max-width: 880px) { .team-photo-layout { grid-template-columns: 1fr; } }
+.team-photo { aspect-ratio: 16 / 10; }
+.roster-note {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+}
