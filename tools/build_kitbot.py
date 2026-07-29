@@ -483,6 +483,10 @@ def reconstruct(parts):
         b = extra[grp]
         if i > 0 and shaft:                        # station 0 shaft already exists
             copy_at(b, shaft, d)
+        if i > 0:                                  # gold sleeve — makes the shaft
+            GOLD = np.array([0.70, 0.58, 0.33], np.float32)
+            V, F = cylinder((0.0, st[1], st[2]), 0.011, 0.24, axis=0, seg=14)
+            stamp_raw(b, V, F, GOLD)
         for x in (-0.15, 0.0, 0.15):               # compliant wheels
             V, F = cylinder((x, st[1], st[2]), 0.047, 0.017, axis=0, seg=20)
             stamp_raw(b, V, F, DARK)
@@ -510,12 +514,6 @@ def reconstruct(parts):
     if guide:
         for dx in (0.091, 0.181):                  # -> x -0.045, +0.045
             copy_at(extra['intake2'], guide, (dx, 0, 0))
-
-    # ---- cross tubes: real brace at (y -0.295, z 0.342); add three more
-    #      tying the side plates up the tower, like the reference CAD
-    if brace:
-        for dy, dz in ((0.0, -0.142), (0.0, 0.118), (0.055, -0.26)):
-            copy_at(extra['frame2'], brace, (0, dy, dz))
 
     # ---- agitator flaps on the brace shaft
     tplf = load_template('Kitbot 2026 - Flap.gltf')
