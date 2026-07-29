@@ -116,9 +116,12 @@ SKIP = re.compile(r'nut|screw|bolt|washer|bearing|spacer|dowel|klipring|insert|s
                   r'Cluster Shaft|Shaft Clip', re.I)
 
 # per-group decimation cell size in metres (robot is ~0.8 m across)
+# Cell size in metres. Smaller = more detail. These were tuned by eye against
+# file size: the whole robot is ~0.84 m across, so 0.8 mm cells keep visible
+# fillets and bolt bosses while still welding away CAD's interior tessellation.
 CELL = {
-    'deck': 0.0060, 'bumpers': 0.0045, 'intake': 0.0045,
-    'hopper': 0.0050, 'launcher': 0.0040, 'power': 0.0060, 'drive': 0.0075,
+    'deck': 0.0012, 'bumpers': 0.0010, 'intake': 0.00070,
+    'hopper': 0.0011, 'launcher': 0.00065, 'power': 0.0013, 'drive': 0.0011,
 }
 # override the CAD's own colours where the part reads better in the site palette
 TINT = {

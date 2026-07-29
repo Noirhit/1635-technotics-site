@@ -413,6 +413,16 @@ strong { color: var(--chalk); font-weight: 600; }
   opacity: 0;
   transition: opacity 1.4s var(--ease-out);
 }
+/* hard guarantee the robot never paints under the copy: the canvas fades out
+   across 48→62% of the viewport. The widest text element (the stats bar) ends
+   at ~60.5%, so the robot only reaches full strength past it; its widest
+   diagonal sweep just soft-fades into the gap instead of touching the type. */
+@media (min-width: 901px) {
+  #rig {
+    -webkit-mask-image: linear-gradient(90deg, transparent 48%, #000 62%);
+    mask-image: linear-gradient(90deg, transparent 48%, #000 62%);
+  }
+}
 #rig.is-live { opacity: 1; }
 #rig.is-dead { display: none; }
 #exploded.is-dead { display: none; }
@@ -440,10 +450,12 @@ strong { color: var(--chalk); font-weight: 600; }
   display: grid;
   gap: var(--s-5);
 }
-/* hold the copy to the left half so the robot never sits under the type */
+/* Copy owns the left 52%; the robot is parked in the right 40% (js/rig.js).
+   The ~8% gap between them is deliberate — it stops long words in the lede
+   from crowding the model at awkward viewport widths. */
 @media (min-width: 901px) {
-  .hero__inner > *:not(.stats) { max-width: 56%; }
-  .hero__title { max-width: 62%; }
+  .hero__inner > *:not(.stats) { max-width: 52%; }
+  .hero__inner > .stats { max-width: 62%; }
 }
 
 .hero__meta {

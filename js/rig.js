@@ -2,7 +2,7 @@
    RIG — renders the team's actual 2026 KitBot.
 
    models/kitbot.glb is built by tools/build_kitbot.py from the Onshape export
-   (621 per-part glTF, 941 MB → 0.5 MB, 23k tris, 8 named sub-assemblies).
+   (621 per-part glTF, 941 MB → 2.3 MB, 104k tris, 8 named sub-assemblies).
    The CAD is Z-up; we rotate to Y-up on load.
 
    Mounts
@@ -119,8 +119,8 @@
           m.needsUpdate = true;
         }
         // hairline edges keep the "drawing" read
-        if (o.geometry && o.geometry.attributes.position.count < 9000) {
-          var eg = new THREE.EdgesGeometry(o.geometry, 34);
+        if (o.geometry && o.geometry.attributes.position.count < 2600) {
+          var eg = new THREE.EdgesGeometry(o.geometry, 48);
           if (eg.attributes.position.count) {
             var lines = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({
               color: 0x8a9199, transparent: true, opacity: 0.30
@@ -156,12 +156,37 @@
   var heroCanvas = document.getElementById('rig');
   if (heroCanvas) {
     var H = makeScene(heroCanvas, { fov: 32 });
-    // Sit the robot in the right-hand third so it never collides with the type.
-    // On narrow screens it recentres and drops behind the copy.
+
+    /* The robot is parked at a fixed FRACTION of the viewport width (centre
+       ~80%), not a fixed world offset — a world offset drifts with aspect
+       ratio and slides off-screen on narrower desktops. The horizontal
+       placement is derived from the camera's half-fov each resize.
+       Belt-and-braces: CSS masks the canvas out under the copy, so even the
+       robot's widest diagonal sweep can never visually touch the text. */
+    // transform order matters: shift (position) wraps spinner (rotation),
+    // otherwise the offset robot orbits the origin instead of turning in place.
+    var shift = new THREE.Group();      // where on screen
+    var spinner = new THREE.Group();    // rotation only
+    shift.add(spinner);
+    H.pivot.add(shift);
+
+    var CAM_D = 7.4, FOV_HALF = 16 * Math.PI / 180;
+
     function frameHero() {
       var wide = window.innerWidth > 900;
-      H.camera.position.set(wide ? -2.9 : 0, 1.5, 6.4);
-      H.camera.lookAt(wide ? 0.55 : 0, 0.05, 0);
+      H.camera.position.set(0, 1.35, wide ? CAM_D : 7.8);
+      H.camera.lookAt(0, 0.05, 0);
+      if (wide) {
+        var r = heroCanvas.getBoundingClientRect();
+        var aspect = (r.width || 1) / (r.height || 1);
+        var halfX = Math.atan(Math.tan(FOV_HALF) * aspect);
+        var angC = (0.80 - 0.5) * 2 * halfX;      // centre at 80% of width
+        shift.position.x = Math.tan(angC) * CAM_D;
+        shift.scale.setScalar(0.8);
+      } else {
+        shift.position.x = 0;
+        shift.scale.setScalar(0.78);
+      }
     }
     frameHero();
     window.addEventListener('resize', frameHero, { passive: true });
@@ -179,7 +204,7 @@
 
     loadRobot(function (root, groups) {
       G = groups;
-      H.pivot.add(root);
+      spinner.add(root);
       H.size();
       heroCanvas.classList.add('is-live');
     }, function () {
@@ -193,11 +218,11 @@
       py += (ty - py) * 0.04;
       if (!REDUCED) {
         spin += 0.0026;
-        H.pivot.rotation.y = spin + px * 0.5;
-        H.pivot.rotation.x = -py * 0.13;
-        H.pivot.position.y = Math.sin(spin * 2.2) * 0.05;
+        spinner.rotation.y = spin + px * 0.5;
+        spinner.rotation.x = -py * 0.13;
+        spinner.position.y = Math.sin(spin * 2.2) * 0.05;
       } else {
-        H.pivot.rotation.y = 0.7;
+        spinner.rotation.y = 0.7;
       }
       H.renderer.render(H.scene, H.camera);
     })();
