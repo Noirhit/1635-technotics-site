@@ -556,6 +556,45 @@ def reconstruct(parts):
             V, F = cylinder((cx, cy, 0.097), 0.008, 0.043, axis=2, seg=10)
             stamp_raw(b, V, F, GREY)
 
+    # ---- team number on the bumpers: white 7-segment stencil digits,
+    #      2 mm proud of the fabric face, front + both sides
+    SEGS = {'1': 'bc', '6': 'acdefg', '3': 'abcdg', '5': 'acdfg'}
+    W, Hd, T = 0.042, 0.075, 0.010          # digit width / height / stroke
+    WHITE = np.array([0.93, 0.93, 0.91], np.float32)
+
+    def digit_quads(u0, v0):
+        q = []                              # (cu, cv, hu, hv) per segment box
+        q.append(('a', u0, v0 + Hd/2 - T/2, W/2, T/2))
+        q.append(('g', u0, v0, W/2 - T*0.2, T/2))
+        q.append(('d', u0, v0 - Hd/2 + T/2, W/2, T/2))
+        q.append(('f', u0 - W/2 + T/2, v0 + Hd/4, T/2, Hd/4))
+        q.append(('e', u0 - W/2 + T/2, v0 - Hd/4, T/2, Hd/4))
+        q.append(('b', u0 + W/2 - T/2, v0 + Hd/4, T/2, Hd/4))
+        q.append(('c', u0 + W/2 - T/2, v0 - Hd/4, T/2, Hd/4))
+        return q
+
+    def paint_number(bucket, face):
+        # face: (axis_u, sign_u, fixed_axis, fixed_val)  · v is always z
+        au, su, af, fv = face
+        pitch = 0.065
+        for k, ch in enumerate('1635'):
+            u0 = (k - 1.5) * pitch
+            for name, cu, cv, hu, hv in digit_quads(u0, 0.110):
+                if name not in SEGS[ch]:
+                    continue
+                c = [0.0, 0.0, 0.0]
+                half = [0.0, 0.0, 0.0]
+                c[au] = su * cu;  half[au] = hu
+                c[2] = cv;        half[2] = hv
+                c[af] = fv;       half[af] = 0.0015
+                V, F, C = _box(tuple(c), tuple(half), WHITE)
+                stamp_raw(bucket, V, F, None, C)
+
+    extra['bumpers2'] = {'V': [], 'F': [], 'C': []}
+    paint_number(extra['bumpers2'], (0, +1, 1,  0.4185))   # front  (y+ face)
+    paint_number(extra['bumpers2'], (1, -1, 0, -0.4205))   # left   (x- face)
+    paint_number(extra['bumpers2'], (1, +1, 0,  0.4205))   # right  (x+ face)
+
     out = []
     for g, bkt in extra.items():
         if not bkt['V']:
