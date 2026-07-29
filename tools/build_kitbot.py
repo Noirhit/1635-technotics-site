@@ -112,6 +112,7 @@ GROUPS = {
     'power':    re.compile(r'battery|Robot Battery|PDH|Radio|RSL|Signal Light|Electronics Panel', re.I),
     'drive':    re.compile(r'ToughBox|Output Shaft|Hex Hub|CIM|Spur Gear|Pulley half|HTD Belt|Timing Belt|Stealth Wheel|20DP|Hex Spacer|Core|WCP-1439', re.I),
 }
+MIRROR = re.compile(r'KB-26001|KB-26005|KB-26013|KB-26010', re.I)
 SKIP = re.compile(r'nut|screw|bolt|washer|bearing|spacer|dowel|klipring|insert|shcs|hhcs|'
                   r'fhts|collar|clip|breaker|SB50|Nylock|flange|button head|cap screw|'
                   r'Cluster Shaft|Shaft Clip', re.I)
@@ -154,6 +155,7 @@ def main():
     ENV_LO = np.array([-0.50, -0.50, -0.13])
     ENV_HI = np.array([ 0.50,  0.50,  0.60])
     rejected = []
+    seen = set()          # (base name, rounded bbox) — duplicate instances are byte-copies
 
     for path in files:
         f = os.path.basename(path)
@@ -175,12 +177,28 @@ def main():
         if lo_p[1] > -0.03 and hi_p[1] < 0.06 and lo_p[2] > -0.10 and hi_p[2] < 0.02 and hi_p[0] > 0.25:
             rejected.append(f)
             continue
+        stem = re.sub(r' \(\d+\)\.gltf$', '', f).replace('.gltf', '')
+        key = (stem, tuple(np.round(lo_p, 4)), tuple(np.round(hi_p, 4)))
+        if key in seen:            # stacked duplicate — placement was lost on export
+            continue
+        seen.add(key)
+        # the churro instances all sit unplaced at the origin, buried in the
+        # frame — drop them here; reconstruct() puts real standoffs back
+        if 'Churro' in f and max(abs(ctr)) < 0.06:
+            continue
         if not g:
             g = 'frame'          # world-placed, unnamed by any regex — keep it
         b = buckets[g]
         b['V'].append(V); b['F'].append(F + base[g]); b['C'].append(C)
         base[g] += len(V); b['n'] += 1
         used += 1
+        # symmetric parts arrive with only ONE placement — emit the x-mirror
+        # twin (flip x, reverse winding) for panels/plates/guides/pulleys
+        if MIRROR.search(f) and abs(ctr[0]) > 0.05:
+            Vm = V.copy(); Vm[:, 0] = -Vm[:, 0]
+            Fm = F[:, ::-1].copy()
+            b['V'].append(Vm); b['F'].append(Fm + base[g]); b['C'].append(C.copy())
+            base[g] += len(Vm); b['n'] += 1
 
     print(f"merged {used} parts  ({len(rejected)} outside assembly envelope, dropped)")
     for f in rejected[:6]:
@@ -472,6 +490,15 @@ def reconstruct(parts):
         for i, x in enumerate((-0.17, -0.06, 0.05, 0.16)):
             stamp(b, tpl, (x, -0.295, 0.342 - 0.046),
                   rot_x=0.5 * (1 if i % 2 else -1), tint=RED)
+
+    # churro standoffs — real placement lost (all instances at origin), so
+    # stand them at the bottom hopper panel corners: panel underside z=0.140,
+    # 3.375in (0.086) tall, resting toward the frame below
+    b = extra['hopper']
+    for cx in (-0.19, 0.19):
+        for cy in (-0.09, 0.12):
+            V, F = cylinder((cx, cy, 0.097), 0.008, 0.043, axis=2, seg=10)
+            stamp_raw(b, V, F, GREY)
 
     out = []
     for g, bkt in extra.items():
