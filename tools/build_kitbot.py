@@ -486,8 +486,8 @@ def reconstruct(parts):
             copy_at(b, shaft, d)
         V, F = cylinder((0.0, st[1], st[2]), 0.011, 0.24, axis=0, seg=14)
         stamp_raw(b, V, F, GOLD)                   # thin gold shaft, every station
-        for x in (-0.15, 0.0, 0.15):               # compliant wheels
-            V, F = cylinder((x, st[1], st[2]), 0.047, 0.017, axis=0, seg=20)
+        for x in (-0.18, -0.06, 0.06, 0.18):       # compliant wheels
+            V, F = cylinder((x, st[1], st[2]), 0.047, 0.008, axis=0, seg=20)
             stamp_raw(b, V, F, DARK)
     # top station: flywheel disc stack on the thin shaft (no fat sleeve —
     #  the discs and wheels must read as separate parts riding the shaft)
@@ -517,13 +517,17 @@ def reconstruct(parts):
     tplf = load_template('Kitbot 2026 - Flap.gltf')
     if tplf:
         b = extra['hopper2']
-        # tops pinned to the brace shaft (y -0.295, z 0.342), all draped
-        # backward at the same angle like the reference
-        ang = 0.62
-        cy = -0.295 + 0.051 * np.sin(ang)
-        cz = 0.342 - 0.051 * np.cos(ang)
+        # agitator flaps hang straight down from the brace shaft — free
+        # swinging parts rest vertical, which is how the reference shows them
         for x in (-0.17, -0.06, 0.05, 0.16):
-            stamp(b, tplf, (x, cy, cz), rot_x=ang, tint=RED)
+            stamp(b, tplf, (x, -0.295, 0.342 - 0.047), rot_x=0.0, tint=RED)
+
+    # ---- flywheel carriage: two support plates from the top rails down to
+    #      the disc-stack shaft
+    b = extra['launcher2']
+    for px in (-0.048, 0.048):
+        V, F, C = _box((px, -0.20, 0.458), (0.0035, 0.10, 0.032), GREY)
+        stamp_raw(b, V, F, None, C)
 
     # ---- upper cross rails: the reference ties the side-plate tops with
     #      full-width rails; the plate top edge is z 0.492, top wheels reach
@@ -547,6 +551,10 @@ def reconstruct(parts):
         out.append((g, V, F, C))
         print(f"  {g:9} reconstructed          {len(F):7,} tris")
     return out
+
+
+def V_colors_grey(V):
+    return np.tile([0.55, 0.57, 0.58], (len(V), 1)).astype(np.float32)
 
 
 def stamp_raw(bucket, V, F, tint, C=None):
