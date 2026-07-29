@@ -2,7 +2,7 @@
    RIG — renders the team's actual 2026 KitBot.
 
    models/kitbot.glb is built by tools/build_kitbot.py from the Onshape export
-   (621 per-part glTF, 941 MB → 2.3 MB, 104k tris, 8 named sub-assemblies).
+   (621 per-part glTF, 941 MB → 3.6 MB, 157k tris, 12 named sub-assemblies).
    The CAD is Z-up; we rotate to Y-up on load.
 
    Mounts
@@ -29,7 +29,8 @@
     power:    [-1.25, 0.10, 0],
     hopper:   [0, 0.45, -0.95],
     intake:   [0, 0.05, 1.30],
-    launcher: [0, 1.15, 0.25]
+    launcher: [0, 1.15, 0.25],
+    frame:    [0, 0.50, -0.55]   /* hopper brace churros ride with the hopper */
   };
 
   /* ---------- scene plumbing -------------------------------------------- */

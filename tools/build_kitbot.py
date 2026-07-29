@@ -103,6 +103,7 @@ def normals(V, F):
 
 # --------------------------------------------------------------- grouping
 GROUPS = {
+    'frame':    re.compile(r'$^'),   # catch-all bucket, filled by position not name
     'deck':     re.compile(r'Battery Floor|Battery C Plate|Battery Access|Battery Strap', re.I),
     'bumpers':  re.compile(r'Bumper', re.I),
     'intake':   re.compile(r'KB-26001|KB-26002|KB-26003|KB-26013|Flap|Intake', re.I),
@@ -120,7 +121,7 @@ SKIP = re.compile(r'nut|screw|bolt|washer|bearing|spacer|dowel|klipring|insert|s
 # file size: the whole robot is ~0.84 m across, so 0.8 mm cells keep visible
 # fillets and bolt bosses while still welding away CAD's interior tessellation.
 CELL = {
-    'deck': 0.0012, 'bumpers': 0.0010, 'intake': 0.00070,
+    'frame': 0.0012, 'deck': 0.0012, 'bumpers': 0.0010, 'intake': 0.00070,
     'hopper': 0.0011, 'launcher': 0.00065, 'power': 0.0013, 'drive': 0.0011,
 }
 # override the CAD's own colours where the part reads better in the site palette
@@ -150,7 +151,7 @@ def main():
     #   B · part-studio layout   (AM14U6 chassis plates lying flat, x out to 0.74)
     # Frame B parts are unrotated and unplaced, so they corrupt the merge.
     # Accept only geometry that sits inside the real assembly envelope.
-    ENV_LO = np.array([-0.50, -0.50, -0.10])
+    ENV_LO = np.array([-0.50, -0.50, -0.13])
     ENV_HI = np.array([ 0.50,  0.50,  0.60])
     rejected = []
 
@@ -159,8 +160,6 @@ def main():
         if SKIP.search(f):
             continue
         g = classify(f)
-        if not g:
-            continue
         r = load_part(path)
         if r is None:
             continue
@@ -172,6 +171,12 @@ def main():
         if np.any(lo_p < ENV_LO) or np.any(hi_p > ENV_HI):
             rejected.append(f)
             continue
+        # part-studio layout slab: thin sheet hugging the ground plane at +x
+        if lo_p[1] > -0.03 and hi_p[1] < 0.06 and lo_p[2] > -0.10 and hi_p[2] < 0.02 and hi_p[0] > 0.25:
+            rejected.append(f)
+            continue
+        if not g:
+            g = 'frame'          # world-placed, unnamed by any regex — keep it
         b = buckets[g]
         b['V'].append(V); b['F'].append(F + base[g]); b['C'].append(C)
         base[g] += len(V); b['n'] += 1
@@ -358,9 +363,136 @@ def write_glb(parts, path, lo, hi):
     return len(out)
 
 
+
+# ---------------------------------------------------------------- templates
+def load_template(name):
+    """Load an unplaced library part, centred at the origin, as (V, F, C)."""
+    r = load_part(os.path.join(SRC, name))
+    if r is None:
+        return None
+    V, F, C = r
+    V, F, C = decimate(V, F, C, 0.0009)
+    V = V - (V.min(0) + V.max(0)) / 2
+    return V, F, C
+
+
+def stamp(bucket, tpl, pos, rot_x=0.0, tint=None):
+    """Place a template at pos (optionally rotated about world X)."""
+    V, F, C = tpl
+    V = V.copy()
+    if rot_x:
+        c, s_ = np.cos(rot_x), np.sin(rot_x)
+        y, z = V[:, 1].copy(), V[:, 2].copy()
+        V[:, 1] = y * c - z * s_
+        V[:, 2] = y * s_ + z * c
+    V = V + np.asarray(pos, np.float32)
+    C = np.tile(tint, (len(V), 1)).astype(np.float32) if tint is not None else C
+    bucket['V'].append(V.astype(np.float32))
+    bucket['F'].append(F + bucket.get('_base', 0))
+    bucket['C'].append(C)
+    bucket['_base'] = bucket.get('_base', 0) + len(V)
+
+
+def cylinder(c, radius, half_len, axis, seg=24):
+    """(V, F) cylinder centred at c, axis 0=x 1=y 2=z."""
+    a1, a2 = [i for i in range(3) if i != axis]
+    ang = np.linspace(0, 2 * np.pi, seg, endpoint=False)
+    V = np.zeros((seg * 2 + 2, 3), np.float32)
+    for i, a in enumerate(ang):
+        for j, off in enumerate((-half_len, half_len)):
+            pnt = np.array(c, np.float32)
+            pnt[a1] += radius * np.cos(a)
+            pnt[a2] += radius * np.sin(a)
+            pnt[axis] += off
+            V[i * 2 + j] = pnt
+    e0 = np.array(c, np.float32); e0[axis] -= half_len
+    e1 = np.array(c, np.float32); e1[axis] += half_len
+    V[-2], V[-1] = e0, e1
+    n0, n1 = seg * 2, seg * 2 + 1
+    F = []
+    for i in range(seg):
+        A, Ab = i * 2, i * 2 + 1
+        B, Bb = ((i + 1) % seg) * 2, ((i + 1) % seg) * 2 + 1
+        F += [[A, B, Ab], [Ab, B, Bb], [n0, B, A], [n1, Ab, Bb]]
+    return V, np.array(F, np.uint32)
+
+
+def reconstruct(parts):
+    """
+    The Onshape export kept only ONE placement per part name — every duplicate
+    file is a byte-copy at the same coordinates, so flaps, pulleys, gears and
+    roller wheels arrive with no positions at all. Rebuild the visually
+    missing assemblies anchored to geometry whose placement we DO have:
+
+      launcher roller  → along the placed KB-26002 roller shaft
+      intake roller    → along the front edge of the placed intake baseplate
+      agitator flaps   → hanging from the placed KB-26007 brace shaft
+      42T belt pulleys → at the extremes of the placed 55T / 105T belt loops
+    """
+    RED = np.array([0.72, 0.10, 0.16], np.float32)
+    GREY = np.array([0.55, 0.57, 0.58], np.float32)
+    DARK = np.array([0.13, 0.14, 0.15], np.float32)
+
+    extra = {'launcher': {'V': [], 'F': [], 'C': []},
+             'intake':   {'V': [], 'F': [], 'C': []},
+             'hopper':   {'V': [], 'F': [], 'C': []}}
+
+    # -- launcher roller: shaft runs x -0.27..0.28 at (y -0.134, z 0.428);
+    #    the placed flywheel disc (r 0.043) sits at its left end.
+    b = extra['launcher']
+    V, F = cylinder((0.006, -0.134, 0.428), 0.041, 0.255, axis=0, seg=28)
+    stamp_raw(b, V, F, RED)
+    for x in (-0.13, 0.02, 0.17):                     # compliant wheel rings
+        V, F = cylinder((x, -0.134, 0.428), 0.049, 0.018, axis=0, seg=22)
+        stamp_raw(b, V, F, DARK)
+
+    # -- 42T pulleys at the ends of each placed belt loop
+    tpl = load_template('Kitbot 2026 - 42 tooth HTD Pulley half 2020.gltf')
+    if tpl:
+        for bx, cy, cz, sy, sz in ((-0.241, -0.273, 0.197, 0.086, 0.103),
+                                   ( 0.246, -0.185, 0.293, 0.184, 0.183)):
+            d = np.hypot(sy, sz) / 2
+            uy, uz = sy / np.hypot(sy, sz), sz / np.hypot(sy, sz)
+            for sgn in (-1, 1):
+                stamp(b, tpl, (bx, cy + sgn * uy * (d - 0.037),
+                               cz + sgn * uz * (d - 0.037)), tint=GREY)
+
+    # -- intake roller along the baseplate front edge (y -0.19, z 0.055)
+    b = extra['intake']
+    V, F = cylinder((0.0, -0.19, 0.055), 0.020, 0.215, axis=0, seg=18)
+    stamp_raw(b, V, F, GREY)
+    for x in (-0.16, -0.08, 0.0, 0.08, 0.16):
+        V, F = cylinder((x, -0.19, 0.055), 0.047, 0.016, axis=0, seg=22)
+        stamp_raw(b, V, F, DARK)
+
+    # -- agitator flaps hanging from the brace shaft (y -0.295, z 0.342)
+    tpl = load_template('Kitbot 2026 - Flap.gltf')
+    if tpl:
+        b = extra['hopper']
+        for i, x in enumerate((-0.17, -0.06, 0.05, 0.16)):
+            stamp(b, tpl, (x, -0.295, 0.342 - 0.046),
+                  rot_x=0.5 * (1 if i % 2 else -1), tint=RED)
+
+    out = []
+    for g, bkt in extra.items():
+        if not bkt['V']:
+            continue
+        V = np.vstack(bkt['V']); F = np.vstack(bkt['F']); C = np.vstack(bkt['C'])
+        out.append((g + '2', V, F, C))     # name-prefix keeps explode grouping
+        print(f"  {g+'2':9} reconstructed          {len(F):7,} tris")
+    return out
+
+
+def stamp_raw(bucket, V, F, tint):
+    bucket['V'].append(V)
+    bucket['F'].append(F + bucket.get('_base', 0))
+    bucket['C'].append(np.tile(tint, (len(V), 1)).astype(np.float32))
+    bucket['_base'] = bucket.get('_base', 0) + len(V)
+
 if __name__ == '__main__':
     parts, lo, hi = main()
     parts = add_chassis_and_wheels(parts, lo, hi)
+    parts += reconstruct(parts)
     allV = np.vstack([p[1] for p in parts])
     lo, hi = allV.min(0), allV.max(0)
     n = write_glb(parts, OUT, lo, hi)
