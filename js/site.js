@@ -68,10 +68,23 @@
   var latest = document.getElementById('latest');
 
   if (feed || latest) {
-    fetch('data/posts.json')
+    fetch('data/posts.json', { cache: 'no-cache' })
       .then(function (r) { return r.json(); })
       .then(function (posts) {
         posts.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+
+        // season has not started — nothing in the logbook yet
+        if (!posts.length) {
+          var soon =
+            '<div class="coming ticked">' +
+              '<span class="note note--red">// Season 2026 — pre-kickoff</span>' +
+              '<h3>Coming soon.</h3>' +
+              '<p>The logbook opens when build season does. First entry lands at kickoff in January.</p>' +
+            '</div>';
+          if (feed) feed.innerHTML = soon;
+          if (latest) latest.innerHTML = soon;
+          return;
+        }
 
         if (feed) {
           feed.innerHTML = posts.map(cardHTML).join('');
