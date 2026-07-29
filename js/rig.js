@@ -44,19 +44,22 @@
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(opts.fov || 34, 1, 0.05, 100);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.62));
+    /* Neutral CAD-studio lighting, like an Onshape viewport. The old red rim
+       light (1.9 intensity) tinted the whole model pink — greys read rose,
+       gold read salmon. Brand colour belongs to the page, not the render. */
+    scene.add(new THREE.AmbientLight(0xffffff, 0.85));
 
-    var key = new THREE.DirectionalLight(0xfff6ee, 1.45);
-    key.position.set(4, 7, 5);
+    var key = new THREE.DirectionalLight(0xffffff, 1.15);
+    key.position.set(4, 8, 6);
     scene.add(key);
 
-    var rim = new THREE.DirectionalLight(0xC8102E, 1.9);
-    rim.position.set(-5, 1.5, -4);
-    scene.add(rim);
-
-    var fill = new THREE.DirectionalLight(0x9fb4c4, 0.75);
-    fill.position.set(-2, 3, 6);
+    var fill = new THREE.DirectionalLight(0xdfe4e8, 0.55);
+    fill.position.set(-5, 3, 4);
     scene.add(fill);
+
+    var back = new THREE.DirectionalLight(0xb9c2c9, 0.45);
+    back.position.set(-3, 4, -6);
+    scene.add(back);
 
     // pivot carries the model so we can spin it without touching part offsets
     var pivot = new THREE.Group();
@@ -114,8 +117,10 @@
 
         var m = o.material;
         if (m) {
-          m.metalness = 0.55;
-          m.roughness = 0.48;
+          // matte, like a CAD viewport — high metalness under a dark page
+          // background is what made surfaces go muddy and dark
+          m.metalness = 0.12;
+          m.roughness = 0.68;
           m.vertexColors = true;
           m.needsUpdate = true;
         }

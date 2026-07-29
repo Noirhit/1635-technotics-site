@@ -517,10 +517,23 @@ def reconstruct(parts):
     tplf = load_template('Kitbot 2026 - Flap.gltf')
     if tplf:
         b = extra['hopper2']
-        # agitator flaps hang straight down from the brace shaft — free
-        # swinging parts rest vertical, which is how the reference shows them
+        GOLD = np.array([0.70, 0.58, 0.33], np.float32)
+        # find the mounting RING in the flap mesh: it is the widest x-region
+        # along the flap's long axis — the shaft must pass THROUGH it
+        Vt = tplf[0]
+        zmin, zmax = Vt[:, 2].min(), Vt[:, 2].max()
+        bins = np.linspace(zmin, zmax, 30)
+        widths = []
+        for k in range(len(bins) - 1):
+            m = (Vt[:, 2] >= bins[k]) & (Vt[:, 2] < bins[k + 1])
+            widths.append(Vt[m, 0].max() - Vt[m, 0].min() if m.any() else 0)
+        ring_z = (bins[int(np.argmax(widths))] + bins[int(np.argmax(widths)) + 1]) / 2
+        # place each flap so its ring is centred ON the shaft axis
         for x in (-0.17, -0.06, 0.05, 0.16):
-            stamp(b, tplf, (x, -0.295, 0.342 - 0.047), rot_x=0.0, tint=RED)
+            stamp(b, tplf, (x, -0.295, 0.342 - ring_z), rot_x=0.0, tint=RED)
+        # and make that shaft readable: gold sleeve like every other shaft
+        V, F = cylinder((0.0, -0.295, 0.342), 0.0095, 0.225, axis=0, seg=14)
+        stamp_raw(b, V, F, GOLD)
 
     # ---- flywheel carriage: two support plates from the top rails down to
     #      the disc-stack shaft
