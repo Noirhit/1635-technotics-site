@@ -481,21 +481,19 @@ def reconstruct(parts):
         st = TOP + (BOT - TOP) * t
         d = st - TOP
         b = extra[grp]
+        GOLD = np.array([0.70, 0.58, 0.33], np.float32)
         if i > 0 and shaft:                        # station 0 shaft already exists
             copy_at(b, shaft, d)
-        if i > 0:                                  # gold sleeve — makes the shaft
-            GOLD = np.array([0.70, 0.58, 0.33], np.float32)
-            V, F = cylinder((0.0, st[1], st[2]), 0.011, 0.24, axis=0, seg=14)
-            stamp_raw(b, V, F, GOLD)
+        V, F = cylinder((0.0, st[1], st[2]), 0.011, 0.24, axis=0, seg=14)
+        stamp_raw(b, V, F, GOLD)                   # thin gold shaft, every station
         for x in (-0.15, 0.0, 0.15):               # compliant wheels
             V, F = cylinder((x, st[1], st[2]), 0.047, 0.017, axis=0, seg=20)
             stamp_raw(b, V, F, DARK)
-    # top station: red flywheel-roller sleeve + disc stack
+    # top station: flywheel disc stack on the thin shaft (no fat sleeve —
+    #  the discs and wheels must read as separate parts riding the shaft)
     b = extra['launcher2']
-    V, F = cylinder((0.006, -0.134, 0.428), 0.041, 0.255, axis=0, seg=28)
-    stamp_raw(b, V, F, RED)
-    for x in (-0.03, 0.005, 0.04, 0.075):
-        V, F = cylinder((x, -0.134, 0.428), 0.054, 0.007, axis=0, seg=24)
+    for x in (-0.032, -0.016, 0.0, 0.016, 0.032):
+        V, F = cylinder((x, -0.134, 0.428), 0.054, 0.006, axis=0, seg=24)
         stamp_raw(b, V, F, DISC)
 
     # ---- 42T pulleys at the placed belt-loop ends
@@ -519,9 +517,20 @@ def reconstruct(parts):
     tplf = load_template('Kitbot 2026 - Flap.gltf')
     if tplf:
         b = extra['hopper2']
-        for i, x in enumerate((-0.17, -0.06, 0.05, 0.16)):
-            stamp(b, tplf, (x, -0.295, 0.342 - 0.046),
-                  rot_x=0.5 * (1 if i % 2 else -1), tint=RED)
+        # tops pinned to the brace shaft (y -0.295, z 0.342), all draped
+        # backward at the same angle like the reference
+        ang = 0.62
+        cy = -0.295 + 0.051 * np.sin(ang)
+        cz = 0.342 - 0.051 * np.cos(ang)
+        for x in (-0.17, -0.06, 0.05, 0.16):
+            stamp(b, tplf, (x, cy, cz), rot_x=ang, tint=RED)
+
+    # ---- upper cross rails: the reference ties the side-plate tops with
+    #      full-width rails; the plate top edge is z 0.492, top wheels reach
+    #      z 0.475, so the rails sit at z 0.487 and never cross the wheels
+    if brace:
+        for dy, dz in ((-0.02, 0.145), (0.21, 0.145)):
+            copy_at(extra['frame2'], brace, (0, dy, dz))
 
     # ---- churro standoffs under the bottom hopper panel corners
     b = extra['hopper2']
