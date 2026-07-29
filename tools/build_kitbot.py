@@ -437,64 +437,96 @@ def cylinder(c, radius, half_len, axis, seg=24):
 
 def reconstruct(parts):
     """
-    The Onshape export kept only ONE placement per part name — every duplicate
-    file is a byte-copy at the same coordinates, so flaps, pulleys, gears and
-    roller wheels arrive with no positions at all. Rebuild the visually
-    missing assemblies anchored to geometry whose placement we DO have:
+    The export kept ONE placement per part name, so most of the ball path is
+    missing. Rebuild it from the reference CAD, reusing REAL part geometry
+    translated to each lost station:
 
-      launcher roller  → along the placed KB-26002 roller shaft
-      intake roller    → along the front edge of the placed intake baseplate
-      agitator flaps   → hanging from the placed KB-26007 brace shaft
-      42T belt pulleys → at the extremes of the placed 55T / 105T belt loops
+      4 roller stations climbing the front tower (real KB-26002 shaft copies,
+        dark compliant wheels; the top station is the flywheel roller and
+        carries the red sleeve + a disc stack)
+      4 centre guides across the width (real KB-26013 geometry, x-shifted)
+      3 cross tubes tying the side plates (real KB-26007 brace shaft copies)
+      4 churro standoffs under the bottom hopper panel corners
+      agitator flaps + 42T pulleys as before
     """
-    RED = np.array([0.72, 0.10, 0.16], np.float32)
+    RED  = np.array([0.72, 0.10, 0.16], np.float32)
     GREY = np.array([0.55, 0.57, 0.58], np.float32)
     DARK = np.array([0.13, 0.14, 0.15], np.float32)
+    DISC = np.array([0.58, 0.28, 0.14], np.float32)   # flywheel discs
 
-    extra = {'launcher': {'V': [], 'F': [], 'C': []},
-             'intake':   {'V': [], 'F': [], 'C': []},
-             'hopper':   {'V': [], 'F': [], 'C': []}}
+    extra = {'launcher2': {'V': [], 'F': [], 'C': []},
+             'intake2':   {'V': [], 'F': [], 'C': []},
+             'hopper2':   {'V': [], 'F': [], 'C': []},
+             'frame2':    {'V': [], 'F': [], 'C': []}}
 
-    # -- launcher roller: shaft runs x -0.27..0.28 at (y -0.134, z 0.428);
-    #    the placed flywheel disc (r 0.043) sits at its left end.
-    b = extra['launcher']
+    def copy_at(bucket, geo, d, tint=None):
+        V, F, C = geo
+        V = V + np.asarray(d, np.float32)
+        C = np.tile(tint, (len(V), 1)).astype(np.float32) if tint is not None else C.copy()
+        stamp_raw(bucket, V.astype(np.float32), F.copy(), None, C)
+
+    # real geometry, kept at its true position — we translate copies of it
+    shaft = load_part(os.path.join(SRC, 'Kitbot 2026 - KB-26002- Roller Shaft.gltf'))
+    guide = load_part(os.path.join(SRC, 'Kitbot 2026 - KB-26013- Intake Guide.gltf'))
+    brace = load_part(os.path.join(SRC, 'Kitbot 2026 - KB-26007- Brace Shaft.gltf'))
+    if shaft: shaft = decimate(*shaft, 0.0009)
+    if guide: guide = decimate(*guide, 0.0009)
+    if brace: brace = decimate(*brace, 0.0009)
+
+    # ---- roller stations: interpolate launcher (real) -> intake mouth
+    TOP = np.array([0.0, -0.134, 0.428])          # placed shaft position
+    BOT = np.array([0.0, -0.190, 0.055])          # intake mouth
+    for i, grp in ((0, 'launcher2'), (1, 'hopper2'), (2, 'hopper2'), (3, 'intake2')):
+        t = i / 3.0
+        st = TOP + (BOT - TOP) * t
+        d = st - TOP
+        b = extra[grp]
+        if i > 0 and shaft:                        # station 0 shaft already exists
+            copy_at(b, shaft, d)
+        for x in (-0.15, 0.0, 0.15):               # compliant wheels
+            V, F = cylinder((x, st[1], st[2]), 0.047, 0.017, axis=0, seg=20)
+            stamp_raw(b, V, F, DARK)
+    # top station: red flywheel-roller sleeve + disc stack
+    b = extra['launcher2']
     V, F = cylinder((0.006, -0.134, 0.428), 0.041, 0.255, axis=0, seg=28)
     stamp_raw(b, V, F, RED)
-    for x in (-0.13, 0.02, 0.17):                     # compliant wheel rings
-        V, F = cylinder((x, -0.134, 0.428), 0.049, 0.018, axis=0, seg=22)
-        stamp_raw(b, V, F, DARK)
+    for x in (-0.03, 0.005, 0.04, 0.075):
+        V, F = cylinder((x, -0.134, 0.428), 0.054, 0.007, axis=0, seg=24)
+        stamp_raw(b, V, F, DISC)
 
-    # -- 42T pulleys at the ends of each placed belt loop
+    # ---- 42T pulleys at the placed belt-loop ends
     tpl = load_template('Kitbot 2026 - 42 tooth HTD Pulley half 2020.gltf')
     if tpl:
         for bx, cy, cz, sy, sz in ((-0.241, -0.273, 0.197, 0.086, 0.103),
                                    ( 0.246, -0.185, 0.293, 0.184, 0.183)):
-            d = np.hypot(sy, sz) / 2
+            dd = np.hypot(sy, sz) / 2
             uy, uz = sy / np.hypot(sy, sz), sz / np.hypot(sy, sz)
             for sgn in (-1, 1):
-                stamp(b, tpl, (bx, cy + sgn * uy * (d - 0.037),
-                               cz + sgn * uz * (d - 0.037)), tint=GREY)
+                stamp(b, tpl, (bx, cy + sgn * uy * (dd - 0.037),
+                               cz + sgn * uz * (dd - 0.037)), tint=GREY)
 
-    # -- intake roller along the baseplate front edge (y -0.19, z 0.055)
-    b = extra['intake']
-    V, F = cylinder((0.0, -0.19, 0.055), 0.020, 0.215, axis=0, seg=18)
-    stamp_raw(b, V, F, GREY)
-    for x in (-0.16, -0.08, 0.0, 0.08, 0.16):
-        V, F = cylinder((x, -0.19, 0.055), 0.047, 0.016, axis=0, seg=22)
-        stamp_raw(b, V, F, DARK)
+    # ---- centre guides: real guide sits at x -0.136 (mirror gives +0.136);
+    #      add the two inner stations the export lost
+    if guide:
+        for dx in (0.091, 0.181):                  # -> x -0.045, +0.045
+            copy_at(extra['intake2'], guide, (dx, 0, 0))
 
-    # -- agitator flaps hanging from the brace shaft (y -0.295, z 0.342)
-    tpl = load_template('Kitbot 2026 - Flap.gltf')
-    if tpl:
-        b = extra['hopper']
+    # ---- cross tubes: real brace at (y -0.295, z 0.342); add three more
+    #      tying the side plates up the tower, like the reference CAD
+    if brace:
+        for dy, dz in ((0.0, -0.142), (0.0, 0.118), (0.055, -0.26)):
+            copy_at(extra['frame2'], brace, (0, dy, dz))
+
+    # ---- agitator flaps on the brace shaft
+    tplf = load_template('Kitbot 2026 - Flap.gltf')
+    if tplf:
+        b = extra['hopper2']
         for i, x in enumerate((-0.17, -0.06, 0.05, 0.16)):
-            stamp(b, tpl, (x, -0.295, 0.342 - 0.046),
+            stamp(b, tplf, (x, -0.295, 0.342 - 0.046),
                   rot_x=0.5 * (1 if i % 2 else -1), tint=RED)
 
-    # churro standoffs — real placement lost (all instances at origin), so
-    # stand them at the bottom hopper panel corners: panel underside z=0.140,
-    # 3.375in (0.086) tall, resting toward the frame below
-    b = extra['hopper']
+    # ---- churro standoffs under the bottom hopper panel corners
+    b = extra['hopper2']
     for cx in (-0.19, 0.19):
         for cy in (-0.09, 0.12):
             V, F = cylinder((cx, cy, 0.097), 0.008, 0.043, axis=2, seg=10)
@@ -505,15 +537,16 @@ def reconstruct(parts):
         if not bkt['V']:
             continue
         V = np.vstack(bkt['V']); F = np.vstack(bkt['F']); C = np.vstack(bkt['C'])
-        out.append((g + '2', V, F, C))     # name-prefix keeps explode grouping
-        print(f"  {g+'2':9} reconstructed          {len(F):7,} tris")
+        out.append((g, V, F, C))
+        print(f"  {g:9} reconstructed          {len(F):7,} tris")
     return out
 
 
-def stamp_raw(bucket, V, F, tint):
+def stamp_raw(bucket, V, F, tint, C=None):
     bucket['V'].append(V)
     bucket['F'].append(F + bucket.get('_base', 0))
-    bucket['C'].append(np.tile(tint, (len(V), 1)).astype(np.float32))
+    bucket['C'].append(C if C is not None
+                       else np.tile(tint, (len(V), 1)).astype(np.float32))
     bucket['_base'] = bucket.get('_base', 0) + len(V)
 
 if __name__ == '__main__':
