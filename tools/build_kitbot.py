@@ -591,7 +591,8 @@ def reconstruct(parts):
                 stamp_raw(bucket, V, F, None, C)
 
     extra['bumpers2'] = {'V': [], 'F': [], 'C': []}
-    paint_number(extra['bumpers2'], (0, +1, 1,  0.4185))   # front  (y+ face)
+    # viewed from outside the y+ face, screen-right is -x (d x u = -x)
+    paint_number(extra['bumpers2'], (0, -1, 1,  0.4185))   # front  (y+ face)
     paint_number(extra['bumpers2'], (1, -1, 0, -0.4205))   # left   (x- face)
     paint_number(extra['bumpers2'], (1, +1, 0,  0.4205))   # right  (x+ face)
 
