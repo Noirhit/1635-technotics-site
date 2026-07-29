@@ -1328,3 +1328,21 @@ strong { color: var(--chalk); font-weight: 600; }
   font-size: var(--t-sm);
   max-width: 48ch;
 }
+
+
+/* --------------------------------------------------------------------------
+   PHOTOBAND — a quiet 3-up strip of shop photos between sections
+   -------------------------------------------------------------------------- */
+.photoband {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.photoband .frame { aspect-ratio: 4 / 3; }
+@media (max-width: 760px) {
+  .photoband { grid-template-columns: 1fr; }
+}
+
+/* frame--fit: never crop — letterbox on graphite instead */
+.frame--fit img,
+.frame--fit .reel img { object-fit: contain; background: var(--graphite); }
