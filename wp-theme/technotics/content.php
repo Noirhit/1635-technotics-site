@@ -1,0 +1,1 @@
+<article class="bay bay--flush"><div class="shell shell--narrow"><h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1><div class="prose mt-7"><?php the_excerpt(); ?></div></div></article>
