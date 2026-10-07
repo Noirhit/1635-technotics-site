@@ -1,1 +1,27 @@
-[]
+[
+    {
+    "date": "2026-10-04",
+    "author": "Team 1635",
+    "title": "A late night in the shop",
+    "excerpt": "The team turns a rough prototype into a working mechanism.",
+    "image": "images/logbook/late-night-shop.jpg",
+    "body": "<p>The shop was still loud at 9:42 p.m. as we tested the latest prototype.</p><h3>What changed</h3><p>We adjusted the intake geometry and made the mechanism easier to service between matches.</p><figure><img src=\"images/logbook/intake-detail.jpg\" alt=\"Close-up of the intake mechanism\" loading=\"lazy\"><figcaption class=\"note\">FIG. 01 — Intake prototype review</figcaption></figure><h3>Next test</h3><p>Tomorrow we will test repeatability, driver control and durability.</p><p><a href=\"https://example.com\" target=\"_blank\" rel=\"noopener\">View the full design notes ↗</a></p>"
+  },
+   {
+    "date": "2026-10-04",
+    "author": "Team 1635",
+    "title": "A late night in the shop",
+    "excerpt": "The team turns a rough prototype into a working mechanism.",
+    "image": "images/logbook/late-night-shop.jpg",
+    "body": "<p>The shop was still loud at 9:42 p.m. as we tested the latest prototype.</p><h3>What changed</h3><p>We adjusted the intake geometry and made the mechanism easier to service between matches.</p><figure><img src=\"images/logbook/intake-detail.jpg\" alt=\"Close-up of the intake mechanism\" loading=\"lazy\"><figcaption class=\"note\">FIG. 01 — Intake prototype review</figcaption></figure><h3>Next test</h3><p>Tomorrow we will test repeatability, driver control and durability.</p><p><a href=\"https://example.com\" target=\"_blank\" rel=\"noopener\">View the full design notes ↗</a></p>"
+  },
+  {
+    "date": "2026-10-04",
+    "author": "Team 1635",
+    "title": "A late night in the shop",
+    "excerpt": "The team turns a rough prototype into a working mechanism.",
+    "image": "images/logbook/late-night-shop.jpg",
+    "body": "<p>The shop was still loud at 9:42 p.m. as we tested the latest prototype.</p><h3>What changed</h3><p>We adjusted the intake geometry and made the mechanism easier to service between matches.</p><figure><img src=\"images/logbook/intake-detail.jpg\" alt=\"Close-up of the intake mechanism\" loading=\"lazy\"><figcaption class=\"note\">FIG. 01 — Intake prototype review</figcaption></figure><h3>Next test</h3><p>Tomorrow we will test repeatability, driver control and durability.</p><p><a href=\"https://example.com\" target=\"_blank\" rel=\"noopener\">View the full design notes ↗</a></p>"
+  }
+  
+]
